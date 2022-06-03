@@ -48,3 +48,6 @@ It is crucial to include WHERE. Otherwise, all rows will be affected.
 
 ________________________________________
 DELETE - deletes rows
+
+DELETE FROM table_name
+WHERE condition;
