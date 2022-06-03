@@ -28,3 +28,14 @@ LIMIT 10
 Use OFFSET to determine starting point like:
 SELECT * from table_name
 LIMIT 10 OFFSET 4  -> this will start at 5
+
+MODIFYING TABLES
+################################################################################
+________________________________________
+INSERT
+
+________________________________________
+UPDATE
+
+________________________________________
+DELETE
