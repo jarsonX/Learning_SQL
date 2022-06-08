@@ -10,6 +10,8 @@ SELECT column1, column2, ...
 FROM table_name
 WHERE condition/predicate;
 
+=, >, >=, <, <=, <>, AND, OR, BETWEEN x AND y, IN ('x', 'y')
+
 ________________________________________
 COUNT
 
