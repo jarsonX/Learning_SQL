@@ -45,6 +45,13 @@ COUNT, SUM, MAX, MIN, AVG, STDEV, VAR
 SELECT COUNT(*)
 FROM table_name
 
+________________________________________
+GROUP BY and HAVING
+
+GROUP BY column
+HAVING x > y
+
+HAVING works only with GROUP BY.
 
 --MODIFYING TABLES
 ################################################################################
