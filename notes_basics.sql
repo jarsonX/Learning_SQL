@@ -1,4 +1,4 @@
-BASICS
+--BASICS
 ################################################################################
 ________________________________________
 SELECT STATEMENT
@@ -31,7 +31,7 @@ Use OFFSET to determine starting point like:
 SELECT * from table_name
 LIMIT 10 OFFSET 4  -> this will start at 5
 
-MODIFYING TABLES
+--MODIFYING TABLES
 ################################################################################
 ________________________________________
 INSERT - inserts new rows
@@ -57,3 +57,48 @@ DELETE - deletes rows
 
 DELETE FROM table_name
 WHERE condition;
+
+--CREATE AND MANIPULATE TABLES
+################################################################################
+________________________________________
+CREATE
+
+CREATE TABLE name
+       (col1 datatype optional_parameters,
+        col2 ...,
+        PRIMARY KEY (col1)
+        )
+
+________________________________________
+ALTER
+Add or remove columns
+Modify the datatype of columns
+Add or remove KEYS
+Add or remove constraints
+
+Each row specifies ONE change.
+
+ALTER TABLE name
+       ADD COLUMN col1 datatype
+       ...
+       ADD COLUMN colN datatype
+       
+ALTER TABLE name
+       ALTER COLUMN col1 SET DATA TYPE datatype
+       
+ALTER TABLE name
+       DROP COLUMN col1
+       
+ALTER TABLE name
+       RENAME COLUMN col1 to 'ABC'
+       
+________________________________________
+DROP - deletes a table
+
+       DROP TABLE name
+
+________________________________________
+TRUNCATE - deletes all rows in a table
+
+       TRUNCATE TABLE name
+              IMMEDIATE     (optional)
