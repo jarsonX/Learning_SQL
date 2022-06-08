@@ -53,6 +53,17 @@ HAVING x > y
 
 HAVING works only with GROUP BY.
 
+--SCALAR FUNCTIONS
+################################################################################
+Perform operations on every input value.
+
+ROUND, LENGTH, UCASE, LCASE
+
+Example: round every value in column:
+
+SELECT ROUND(column)
+FROM table
+
 --MODIFYING TABLES
 ################################################################################
 ________________________________________
