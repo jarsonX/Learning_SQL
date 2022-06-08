@@ -53,9 +53,10 @@ HAVING x > y
 
 HAVING works only with GROUP BY.
 
---SCALAR FUNCTIONS
+--SCALAR AND STRING FUNCTIONS
 ################################################################################
-Perform operations on every input value.
+Perform operations on every input value. String functions are those that operate
+on char and varchar.
 
 ROUND, LENGTH, UCASE, LCASE
 
