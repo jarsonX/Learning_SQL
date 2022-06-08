@@ -21,7 +21,7 @@ FROM table_name
 ________________________________________
 DISTINCT - removes duplicates
 
-SELECT DISTINCT column_name
+SELECT DISTINCT (column_name)
 FROM table_name
 
 ________________________________________
