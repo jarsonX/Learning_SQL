@@ -20,7 +20,9 @@ SELECT DISTINCT column_name
 FROM table_name
 
 ________________________________________
-LIMIT - restricts number of rows
+LIMIT - restricts number of rows in MySQL
+TOP - same in SQL Server, MS Access
+FETCH - same in Oracle
 
 SELECT * from table_name
 LIMIT 10
