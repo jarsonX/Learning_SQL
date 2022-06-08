@@ -20,12 +20,6 @@ WHERE firstname LIKE '[a-d]%'
 WHERE firstname LIKE >= 'N'
 
 ________________________________________
-COUNT
-
-SELECT COUNT(*)
-FROM table_name
-
-________________________________________
 DISTINCT - removes duplicates
 
 SELECT DISTINCT (column_name)
@@ -42,6 +36,15 @@ LIMIT 10
 Use OFFSET to determine starting point like:
 SELECT * from table_name
 LIMIT 10 OFFSET 4  -> this will start at 5
+
+--AGGREGATE FUNCTIONS
+################################################################################
+________________________________________
+COUNT, SUM, MAX, MIN, AVG, STDEV, VAR
+
+SELECT COUNT(*)
+FROM table_name
+
 
 --MODIFYING TABLES
 ################################################################################
