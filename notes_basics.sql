@@ -8,9 +8,16 @@ SELECT STATEMENT
 
 SELECT column1, column2, ...
 FROM table_name
+
+________________________________________
 WHERE condition/predicate;
 
 =, >, >=, <, <=, <>, AND, OR, BETWEEN x AND y, IN ('x', 'y')
+
+WHERE firstname LIKE 'D%'
+WHERE firstname LIKE 'T___'
+WHERE firstname LIKE '[a-d]%'
+WHERE firstname LIKE >= 'N'
 
 ________________________________________
 COUNT
