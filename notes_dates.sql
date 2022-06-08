@@ -15,3 +15,10 @@ ss, s     SECOND()
 ms        MILISECOND()
 mcs       MICROSECOND()
 ns        NANOSECOND()
+
+CURRENT_DATE, CURRENT_TIME
+
+Example:
+SELECT ID
+FROM table_name
+WHERE MONTH(Dates) = '05'
