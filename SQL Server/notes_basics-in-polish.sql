@@ -41,7 +41,10 @@ INNER JOIN... ON...   część wspólna obu tabel
 LEFT JOIN... ON...        lewa tabela + to, co w prawej pasuje do lewej
 RIGHT JOIN... ON...
 FULL JOIN... ON...        wszystkie obiekty z obu tabel
-CROSS JOIN... ON...
+CROSS JOIN... ON...       każdy obiekt pierwszej tabeli z każdym obiektem drugiej tabeli
+
+>>> OUTER JOINS
+Działają jak podstawowe JOINS, ale wykluczają część wspólną.
 
 LEFT OUTER JOIN... ON...  lewa tabela z wyłączeniem tego, co jest wspólne między lewą a prawą
 RIGHT OUTER JOIN... ON...
@@ -56,5 +59,46 @@ JOIN countries
 
 _________________________________________________________________________________________________________________
 ŁĄCZENIA PIONOWE
+
+UNION łączy zestawy i usuwa duplikaty
+UNION ALL jak wyżej, ale nie usuwa duplikatów
+INTERSECT zwraca część wspólną
+EXCEPT zwraca tylko to, co było w pierwszej tabeli i nie powtarzało się w drugiej
+
+Przykład:
+
+SELECT name
+FROM cycling
+WHERE country = 'PL'
+UNION
+SELECT name
+FROM skating
+WHERE country = 'PL'
+
+_________________________________________________________________________________________________________________
+INSTRUKCJE WARUNKOWE
+
+>>> CASE
+Stosowane przy wielu możliwościach wyboru. Przypomina konstrukcję IF... THEN... ELSE.... 
+Sprawdza warunek dla każdego wiersza zwracanego w wyniku zapytania.
+
+Zastosowanie PROSTE - jedna wartość porównywana do listy wartości; zwraca PIERWSZE dopasowanie.
+
+CASE argument
+WHEN wartość_1 THEN 'Jeżeli prawda_1'           wartość to np. '1'
+WHEN wartość_2 THEN 'Jeżeli prawda_2'
+ELSE 'Jeżeli fałsz'
+END
+
+Zastosowanie ZŁOŻONE - sprawdza wiele warunków i zwraca wynik związany z pierwszym spełnionym warunkiem.
+
+CASE argument
+WHEN warunek_1 THEN 'Jeżeli prawda_1'           warunek to np. CategoryID = 1 OR CategoryID = 2
+WHEN warunek_2 THEN 'Jeżeli prawda_2'
+ELSE 'Jeżeli fałsz'
+END
+
+>>> IIF
+Stosowane, gdy są tylko dwie możliwości wyboru.
 
 
