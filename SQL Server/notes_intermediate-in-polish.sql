@@ -58,4 +58,41 @@ BEGIN
 END
 PRINT 'Too much for the market to bear'
 
+________________________________________________________________________________________________________________
+FUNKCJE RANKINGUJĄCE
+
+Każda funkcja rankingująca działa w oparciu o funkcję OVER.
+
+>>> LAG 
+Odwołuje się do wartości poprzedniego wiersza.
+
+LAG(scalar_expression [, offset][, default])
+        OVER ([partition_by_clause] order_by_clause)
+        
+>>> LEAD
+Odwołuje się do wartości kolejnego wiersza.
+
+LEAD(scalar_expression [, offset][, default]
+        OVER ([partition_by_clause] order_by_clause)
+        
+>>> ROW_NUMBER
+Numeruje elementy wyniku zapytania.
+
+ROW_NUMBER()
+        OVER([PARTITION BY value_expression, ... [n]]
+        order_by_clause)
+        
+>>> DENSE_RANK()
+Numeruje elementy wyniku zapytania. Jeżeli elementy posiadają taką samą wartość, otrzymują jednakowy ranking.
+
+DENSE_RANK()
+        OVER([partition_by_clause] order_by_clause)
+        
+>>> RANK()
+Numeruje elementy wyniku zapytania. Jeżeli elementy posiadają taką samą wartość, otrzymują jednakowy ranking,
+a kolejna liczba w rankingu jest pomijana (np. 1, 2, 2, 4, 5).
+
+RANK()
+        OVER([partition_by_clause] order_by_clause)
+
 
