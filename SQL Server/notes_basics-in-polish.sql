@@ -51,7 +51,7 @@ TOP [PERCENT] [WITH TIES]
 
 SELECT TOP X ProductName
 
-Można używać tylko w połączeniu z ORDER BY. WITH TIES uwzględnia identyczne wartości końcowe.
+WITH TIES uwzględnia identyczne wartości końcowe.
 _________________________________________________________________________________________________________________
 FUNKCJE AGREGUJĄCE
 
