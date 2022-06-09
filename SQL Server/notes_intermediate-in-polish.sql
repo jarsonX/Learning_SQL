@@ -34,3 +34,8 @@ SET @FirstName = 'Pies'
 SELECT LastName, FirstName, HomePhone
 FROM Employees
 WHERE LastName LIKE @LastName AND FirstName LIKE @FirstName
+
+________________________________________________________________________________________________________________
+WHILE ORAZ PRINT
+
+
