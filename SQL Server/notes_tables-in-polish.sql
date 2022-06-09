@@ -54,5 +54,86 @@ Usuwanie rekordów.
 Dodanie nowego wiersza do tabeli.
 
 DELETE FROM Production.History    - usuwa wszystkie rekordy
-WHERE ...                         - opcjonalne, pozwala ograniczyć zakres
+WHERE...                          - opcjonalne, pozwala ograniczyć zakres
 
+_________________________________________________________________________________________________________________
+TWORZENIE I MODYFIKACJA BAZY DANYCH
+
+CREATE DATABASE name
+DROP DATABASE name
+ALTER DATABASE
+
+Przykład:
+
+ALTER DATABASE Northwind
+MODIFY NAME = "Północny wiatr"
+
+_________________________________________________________________________________________________________________
+TWORZENIE I MODYFIKACJA TABEL
+
+Typy danych:
+- numeryczne
+- data i czas
+- znakowe
+- binarne
+- przestrzenne
+- pozostałe
+
+>>> CREATE TABLE
+
+Przykłady:
+
+CREATE TABLE name (
+      kolumna_1 datatype constraint
+      kolumna_2 datatype constraint
+      )
+      
+CREATE TABLE Persons ( 
+      PersonID int,
+      LastName varchar(255),
+      FirstName varchar(255),
+      Address varchar (255),
+      )
+      
+CREATE TABLE nowa_tabela AS
+      SELECT kolumna_1, kolumna_2
+      FROM istniejąca_tabela
+      WHERE...
+    
+>>> ALTER TABLE
+
+ALTER TABLE name
+      ADD kolumna_1 datatype constraint,
+      DROP COLUMN kolumna_2
+      ALTER COLUMN kolumna_3 datatype
+      
+>>> DROP TABLE
+      
+DROP TABLE name
+
+_________________________________________________________________________________________________________________
+PRIMARY KEY
+
+CREATE TABLE Persons ( 
+      PersonID int PRIMARY KEY, ...
+      
+CREATE TABLE Persons (
+      ID int NOT NULL,
+      LastName varchar(255) NOT NULL,
+      FirstName varchar(255),
+      Age int DEFAULT 18,
+      CONSTRAINT PK_person PRMARY KEY (ID, LastName)        - klucz stworzony z dwóch wartości
+      )
+
+_________________________________________________________________________________________________________________
+CONSTRAINTS
+Określają zasady/reguły dla danych w tabeli. Mogą zostać określone w momencie jej tworzenia lub później poprzez
+ALTER TABLE.
+
+NOT NULL
+UNIQUE
+PRIMARY KEY
+FOREIGN KEY
+CHECK condition
+DEFAULT (podstawowa wartość, jeśli nie podano innej)
+CREATE INDEX
