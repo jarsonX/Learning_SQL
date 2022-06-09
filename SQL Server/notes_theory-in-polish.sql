@@ -144,41 +144,46 @@ wypadków wystarczające są pierwsze 3 postacie.
 
 Schemat nienormalizowany:
 
-ID    | Client    | Address      | Details         | Value per unit | Total value   
-___________________________________________________________________________________
-102   | JAR       | Lead 2, SC   | 2 units of ABC  | 100            | 200
-      |           |              | 3 units of BOB  | 10             | 30
-103   | DOM       | Swamp 8, KC  | 10 units of WBC | 5              | 50
-      |           |              | 4 units of BCA  | 1              | 4
+ID  | Client    | Address      | Details         | Value per unit | Total value   
+________________________________________________________________________________
+102 | JAR       | Lead 2, SC   | 2 units of ABC  | 100            | 200
+    |           |              | 3 units of BOB  | 10             | 30
+103 | DOM       | Swamp 8, KC  | 10 units of WBC | 5              | 50
+    |           |              | 4 units of BCA  | 1              | 4
 
 Pierwsza postać normalna:
 
-ID    | Client  | Street | Number | City  | Quantity | Product | Value per unit | Total value      
-______________________________________________________________________________________________
-102   | JAR     | Lead   | 2      | SC    | 2        | ABC     | 100            | 200
-102   | JAR     | Lead   | 2      | SC    | 3        | BOB     | 10             | 30
-103   | DOM     | Swamp  | 8      | KC    | 10       | WBC     | 5              | 50
-103   | DOM     | Swamp  | 8      | KC    | 4        | BCA     | 1              | 4
+ID  | Client  | Street | Number | City  | Quantity | Product | Value per unit | Total value      
+___________________________________________________________________________________________
+102 | JAR     | Lead   | 2      | SC    | 2        | ABC     | 100            | 200
+102 | JAR     | Lead   | 2      | SC    | 3        | BOB     | 10             | 30
+103 | DOM     | Swamp  | 8      | KC    | 10       | WBC     | 5              | 50
+103 | DOM     | Swamp  | 8      | KC    | 4        | BCA     | 1              | 4
 
 >>> DRUGA POSTAĆ NORMALNA
 - utwórz osobne tabele dla zestawów wartości dotyczących wielu rekordów
 - powiąż te tabele za pomocą FOREIGN KEY
 
-ID    | Client ID | Client  | Street  | Number | City  | Quantity | P_ID | Product | Value per unit | Total value             
-__________________________________________________________________________________________________________________
-102   | 001       | JAR     | Lead    | 2      | SC    | 2        | AB01 | ABC     | 100            | 200
-102   | 001       | JAR     | Lead    | 2      | SC    | 3        | BO01 | BOB     | 10             | 30
-103   | 002       | DOM     | Swamp   | 8      | KC    | 10       | WB01 | WBC     | 5              | 50
-103   | 002       | DOM     | Swamp   | 8      | KC    | 4        | BC01 | BCA     | 1              | 4
+ID  | Client ID | Client  | Street  | Number | City  | Quantity | P_ID | Product | Value per unit | Total value             
+_______________________________________________________________________________________________________________
+102 | 001       | JAR     | Lead    | 2      | SC    | 2        | AB01 | ABC     | 100            | 200
+102 | 001       | JAR     | Lead    | 2      | SC    | 3        | BO01 | BOB     | 10             | 30
+103 | 002       | DOM     | Swamp   | 8      | KC    | 10       | WB01 | WBC     | 5              | 50
+103 | 002       | DOM     | Swamp   | 8      | KC    | 4        | BC01 | BCA     | 1              | 4
 
 >>> TRZECIA POSTAĆ NORMALNA
 - wyeliminuj pola, które nie zależą od klucza
 
 Zakładając, że stworzymy tabele Products oraz Clients, to część informacji z powyższej tabeli, możemy przenieść do
-tych nowo utworzonych tabel.
+tych nowo utworzonych tabel. Powinniśmy też usunąć kolumnę Total value, ponieważ możemy to łatwo policzyć
+(value per unit z tabeli Products x Quantity z głównej tabeli).
 
-, która zawierać będzie informacje o Value per unit oraz tabelę dla klientów, 
-to z powyższych tabeli możemy usunąć: Client, Street, Number, City, Quantity
+ID  | Client ID | Quantity | P_ID |           
+__________________________________
+102 | 001       | 2        | AB01 |
+102 | 001       | 3        | BO01 |
+103 | 002       | 8        | WB01 |
+103 | 002       | 8        | BC01 |
 
 _________________________________________________________________________________________________________________
 ANOMALIE
