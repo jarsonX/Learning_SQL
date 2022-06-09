@@ -34,11 +34,27 @@ w drugiej tabeli. Wiersze niepasujące do złączenia są odrzucane. Istotne są
 >>> ZŁĄCZENIA WEWNĘTRZNE
 
 JOIN... ON...
-INNER JOIN... ON...
+INNER JOIN... ON...   część wspólna obu tabel
 
 >>> ZŁĄCZENIA ZEWNĘTRZNE
 
-LEFT JOIN... ON...    wiersze z lewej, dla których nie ma odpowiedników z prawej
+LEFT JOIN... ON...        lewa tabela + to, co w prawej pasuje do lewej
 RIGHT JOIN... ON...
-FULL JOIN... ON...
+FULL JOIN... ON...        wszystkie obiekty z obu tabel
 CROSS JOIN... ON...
+
+LEFT OUTER JOIN... ON...  lewa tabela z wyłączeniem tego, co jest wspólne między lewą a prawą
+RIGHT OUTER JOIN... ON...
+FULL OUTER JOIN... ON...
+
+Przykład:
+
+SELECT cities.name, countries.name
+FROM cities
+JOIN countries
+  ON cities.country_id = countries.id
+
+_________________________________________________________________________________________________________________
+ŁĄCZENIA PIONOWE
+
+
