@@ -18,9 +18,16 @@ TERMINOLOGIA
 Wiersz = krotka = rekord; zawiera obiekt
 Atrybut = kolumna (nazwa i typ danych)
 Dziedzina = zbiór dopuszczalnych wartości dla atrybutu
+Relacja - tabela posiadająca kolumny i wiersze (a kolokwialnie - powiązanie pomiędzy tabelami)
 Stopień krotności relacji = liczba atrybutów relacji
 Moc relacji = ilość krotek, które znajdują się w relacji
 
+>>> KLUCZE:
+- każda tabela musi mieć klucz
+- rodzaje:
+   - PRIMARY KEY
+   - FOREIGN KEY (przy powiązaniach przechodzi z jednej tabeli do drugiej;
+                  klucz podrzędny, powiązany z kluczem z tabeli nadrzędnej)
 _________________________________________________________________________________________________________________
 12 POSTULATÓW CODDA
 
@@ -60,7 +67,7 @@ WŁASNOŚCI RELACJI
 2. Wszystkie wartości w kolumnie są tego samego typu.
 3. Każdy wiersz jest unikalny.
 4. Każde pole (tj. przecięcie kolumny z wierszem) zawiera wartość atomową. Nie przechowujemy w jednym polu większej
-ilości informacji, niż to konieczne.
+ilości informacji, niż to konieczne (tzw. atomowość danych).
 5. Każda relacja zawiera PRIMARY KEY, tj. kolumnę lub kolumny, których wartości pozawlają na jednoznaczną
 identyfikację wiersza.
 
@@ -82,12 +89,6 @@ PROJEKTOWANIE BAZ DANYCH
 - liczności
 - klucze
 - podklasy
-
->>> KLUCZE:
-- każda tabela musi mieć klucz
-- rodzaje:
-   - PRIMARY KEY
-   - FOREIGN KEY (przy powiązaniach przechodzi z jednej tabeli do drugiej)
 
 >>> CECHY DOBREGO SCHEMATU:
 - brak redundancji,
