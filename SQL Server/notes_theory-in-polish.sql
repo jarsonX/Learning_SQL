@@ -130,6 +130,18 @@ Def. 2 - eliminowanie powtarzających się danych w relacyjnej bazie danych.
 Normalizacja prowadzi od schematu nienormalizowanego przez 5 postaci znormalizowanych, przy czym w większości
 wypadków wystarczające są pierwsze 3 postacie.
 
+Pierwsza postać normalna
+- wyeliminuj powtarzające się grupy w poszczególnych tabelach
+- utwórz osobną tabelę dla każdego zestawu powiązanych danych
+- zidentyfikuj każdy zestaw powiązancyh danych za pomocą PRIMARY KEY
+
+ID    | Client    | Address      | Details
+_________________________________________________
+102   | JAR       | Lead 2, SC   | 2 units of ABC
+      |           |              | 3 units of BOB
+103   | DOM       | Swamp 8, KC  | 10 units of WBC
+      |           |              | 4 units of BCA
+
 >>> CELE:
 1. Uniknięcie redundancji
 2. Wyeliminowanie relacji wieloznacznych (wiele do wielu)
