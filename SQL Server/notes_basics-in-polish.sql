@@ -114,8 +114,71 @@ FROM Products
 _________________________________________________________________________________________________________________
 WIDOKI
 
+Utrwalone zapytanie SELECT.
+
+CREATE VIEW nazwa
+AS
+instrukcja SELECT
+
+ALTER VIEW nazwa
+AS
+instrukcja SELECT
+
+DROP VIEW nazwa
+
+Przykład:
+
+CREATE VIEW klienci_USA
+AS
+SELECT *
+FROM Customers
+WHERE Country = 'USA'
+
+SELECT * FROM klienci_USA
+
 _________________________________________________________________________________________________________________
 PODZAPYTANIA
+
+Zagnieżdżanie zapytań, tj. instrukcja SELECT wewnątrz instrukcji SELECT, zapisywana w nawiasie.
+
+Dzielą się na:
+- zwracające pojedynczą wartość skalarną
+- zwracające listę wartości (jedną kolumnę)
+- zwracające dane tabelaryczne
+
+Do wartości podzapytania odwołujemy się na ogół poprzez operatory IN i NOT IN.
+
+SELECT OrderID, CustomerID
+FROM Orders
+WHERE CustomerID IN (
+        SELECT CustomerID
+        FROM Customers
+        WHERE Country = 'USA'
+        )
+  
+Można również używać operatorów:
+- EXISTS - prawdziwe, jeśli zapytanie zwróciło cokolwiek
+- ANY/SOME - sprawdza wartość dowolnego wiersza
+- ALL - sprawdza wartość wszystkich wierszy
+
+Przykład:
+Szukamy klienta, który nie zamówił żadnego produktu, tj. dla każdego klienta w tabeli klientów sprawdzamy
+czy w tabeli zamówień nie istnieje choć jedno zamówienie.
+
+SELECT CustomerID, CompanyName
+FROM Customers C
+WHERE NOT EXISTS (
+        SELECT OrderID
+        FROM Orders O
+        WHERE O.CustomerID = C.CustomerID
+        )
+
+>>> PODZAPYTANIA NIEPOWIĄZANE
+Zapytanie wewnętrzne wykonywane jest tylko raz, tj. zwraca jeden wynik.
+
+>>> PODZAPYTANIA POWIĄZANE (skorelowane)
+Zapytanie wewnętrzne wykonywane jest dla każdego wiersza zwróconego przez zapytanie, tj. zwraca tyle wierszy ile
+wierszy liczy wynik zapytania zewnętrznego.
 
 _________________________________________________________________________________________________________________
 DATY I CZAS
