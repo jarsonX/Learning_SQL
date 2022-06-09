@@ -101,4 +101,25 @@ END
 >>> IIF
 Stosowane, gdy są tylko dwie możliwości wyboru.
 
+IIF (warunek, jeżeli_prawda, jeżeli_fałsz)
+
+Przykład:
+
+SELECT ProductName, UnitPirce
+IIF (UnitPrice < 20, 'niska cena',
+      IIF (UnitPrice BETWEEN 20 AND 40, 'średnia cena', 'wysoka cena')
+     ) AS 'Przedział_cenowy'
+FROM Products
+
+_________________________________________________________________________________________________________________
+WIDOKI
+
+_________________________________________________________________________________________________________________
+PODZAPYTANIA
+
+_________________________________________________________________________________________________________________
+DATY I CZAS
+
+
+
 
