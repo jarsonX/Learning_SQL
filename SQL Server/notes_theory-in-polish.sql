@@ -68,11 +68,37 @@ ________________________________________________________________________________
 PROJEKTOWANIE BAZ DANYCH
 
 >>> MODEL KONCEPTUALNY (opis teoretyczny)
-
 1. Analiza informacji, które będą zawarte w bazie.
 2. Diagram Encji / Relacji (schemat struktury; encje, relacje, klucze),
    Diagramy przypadków użycia.
 3. Schemat bazy (model relacyjny) - kompletny schemat.
+
+>>> DIAGRAM ENCJI / RELACJI (ERD):
+- podstawowe elementy:
+   - encje - rozróżnialne obiekty
+   - tabele - zbiory encji
+   - atrybuty - informacje opisujące encje
+   - powiązania pomiędzy encjami lub tabelami
+- liczności
+- klucze
+- podklasy
+
+>>> KLUCZE:
+- każda tabela musi mieć klucz
+- rodzaje:
+   - PRIMARY KEY
+   - FOREIGN KEY (przy powiązaniach przechodzi z jednej tabeli do drugiej)
+
+>>> CECHY DOBREGO SCHEMATU:
+- brak redundancji,
+- przejrzystość i czytelność,
+- odzwierciedlenie wszystkich obiektów, powiązań,
+- wskazanie typów pól, charakteru powiązań
+
+>>> DOKUMENTACJA:
+- projekt
+- dokumentacja techniczna (schematy, diagramy)
+- instrukcje dla konkretnych stanowisk, klientów itp.
 
 _________________________________________________________________________________________________________________
 ZASADY PROJEKTOWANIA BAZ DANYCH
@@ -93,4 +119,20 @@ TWORZENIE PROJEKTU BAZY DANYCH
 
 Zmienne swobodne to informacje niepowiązane bezpośrednio z wcześniejszymi obiektami. Przechowuje się je w tabeli,
 która nie ma relacji z innymi.
+
+_________________________________________________________________________________________________________________
+NORMALIZACJA
+
+Def. 1 - organizowanie danych w bazie.
+Def. 2 - eliminowanie powtarzających się danych w relacyjnej bazie danych.
+
+>>> CELE:
+1. Uniknięcie redundancji
+2. Wyeliminowanie relacji wieloznacznych (wiele do wielu)
+3. Uniknięcie anomalii przy aktualizacji (anomalie: modyfikacje, wstawianie, usuwanie)
+4. Uniknięcie niespójności
+
+
+
+
 
