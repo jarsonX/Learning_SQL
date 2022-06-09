@@ -11,9 +11,52 @@ HAVING kryterium filtrowania      4
 ORDER BY kolumna_1, kolumna_2     6
 
 _________________________________________________________________________________________________________________
+WHERE - typowe użycia
+
+...WHERE FirstName LIKE  'A%'
+                         '%a%'
+                         '_a%'
+                         '[a-k]%'
+                         '[^a-k]%' - spoza zbioru
+                         
+...WHERE State IN ('WA', 'NV', 'UT')
+
+Przydatne operatory: IN, BETWEEN ... AND ..., AND, OR, NOT, LIKE.
+
+_________________________________________________________________________________________________________________
+ORDER BY
+
+Sortować można poprzez:
+- nazwę kolumny
+- alias
+- pozycje kolumny (np. '1' - pierwsza)
+- wyliczone wyrażenie
+
+ORDER BY column_1
+ORDER BY column_1 DESC
+ORDER BY 2, 1           - sortuj po kolumnie 2, a potem po kolumnie 1
+
+_________________________________________________________________________________________________________________
+NULL - szczególna wartość
+
+SELECT CompanyName, Region
+FROM Suppliers
+WHERE Region IS NULL        
+
+Powyższe zwróci wszystkie rekordy, gdzie brakuje informacji odnośnie regionu. Region = '' nie zwróciłoby tej
+informacji.
+
+_________________________________________________________________________________________________________________
+TOP
+
+SELECT TOP X ProductName
+
+_________________________________________________________________________________________________________________
 FUNKCJE AGREGUJĄCE
 
 COUNT, SUM, MAX, MIN, AVG, STDEV, VAR
+
+Dla powyższych przydaje się DISTINCT, np. COUNT DISTINCT().
 
 Z funkcjami agregującymi możemy wykorzystać: GROUP BY oraz HAVING. HAVING działa tylko z GROUP BY.
 
@@ -24,6 +67,13 @@ HAVING yyy > 1
 
 WHERE filtruje wiersze, HAVING filtruje grupy.
 W klauzulach GROUP BY i HAVING nie używamy aliasów.
+
+Przykład:
+
+SELECT ShipCity, COUNT(Freight) AS 'Freight'
+FROM Orders
+GROUP BY ShipCity
+HAVING COUNT(Freight) > 10
 
 _________________________________________________________________________________________________________________
 ŁĄCZENIE TABEL
@@ -180,8 +230,6 @@ Zapytanie wewnętrzne wykonywane jest tylko raz, tj. zwraca jeden wynik.
 Zapytanie wewnętrzne wykonywane jest dla każdego wiersza zwróconego przez zapytanie, tj. zwraca tyle wierszy ile
 wierszy liczy wynik zapytania zewnętrznego.
 
-_________________________________________________________________________________________________________________
-DATY I CZAS
 
 
 
