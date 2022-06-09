@@ -126,11 +126,34 @@ NORMALIZACJA
 Def. 1 - organizowanie danych w bazie.
 Def. 2 - eliminowanie powtarzających się danych w relacyjnej bazie danych.
 
+Normalizacja prowadzi od schematu nienormalizowanego przez 5 postaci znormalizowanych, przy czym w większości
+wypadków wystarczające są pierwsze 3 postacie.
+
 >>> CELE:
 1. Uniknięcie redundancji
 2. Wyeliminowanie relacji wieloznacznych (wiele do wielu)
-3. Uniknięcie anomalii przy aktualizacji (anomalie: modyfikacje, wstawianie, usuwanie)
+3. Uniknięcie anomalii przy aktualizacji (anomalie: modyfikacje, usuwanie, dołączenie/wstawienie)
 4. Uniknięcie niespójności
+
+_________________________________________________________________________________________________________________
+ANOMALIE
+
+1. Redundancja - ta sama informacja przechowywana w kilku krotkach. Nadmiarowość kodowania.
+2. Anomalia modyfikacji - aktualizcja jednej krotki, nie powoduje aktualizacji innej (choć powinna).
+3. Anomalia usuwania - usunięcie jednej informacji powoduje usunięcie drugiej informacji (choć nie powinno).
+4. Anomalia dołączania/wstawiania - wprowadzenie informacji zależne jest od wprowadzenia innej informacji,
+która jest niedostępna.
+
+_________________________________________________________________________________________________________________
+BEZSTRATNE ZŁĄCZENIE
+
+Tabela -> podział -> ponowne połączenie -> ta sama tabela, co na początku
+
+_________________________________________________________________________________________________________________
+INTEGRALNOŚĆ BAZY DANYCH
+
+Wewnętrzna - zawartość zgodna sama ze sobą.
+Zewnętrzna - zawartość zgodna z rzeczywistością.
 
 
 
