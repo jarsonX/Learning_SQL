@@ -63,3 +63,34 @@ WŁASNOŚCI RELACJI
 ilości informacji, niż to konieczne.
 5. Każda relacja zawiera PRIMARY KEY, tj. kolumnę lub kolumny, których wartości pozawlają na jednoznaczną
 identyfikację wiersza.
+
+_________________________________________________________________________________________________________________
+PROJEKTOWANIE BAZ DANYCH
+
+>>> MODEL KONCEPTUALNY (opis teoretyczny)
+
+1. Analiza informacji, które będą zawarte w bazie.
+2. Diagram Encji / Relacji (schemat struktury; encje, relacje, klucze),
+   Diagramy przypadków użycia.
+3. Schemat bazy (model relacyjny) - kompletny schemat.
+
+_________________________________________________________________________________________________________________
+ZASADY PROJEKTOWANIA BAZ DANYCH
+
+1. Dokładność - projekt odpowiada specyfikacji, odzwierciedla rzeczywistość,
+2. Unikanie redundancji,
+3. Prostota - tylko tyle elementów, ile potrzeba,
+4. Dobór właściwych elementów - nie dobieramy atrybutów, które nie są potrzebne (np. wzrost użytkownika biblioteki)
+
+_________________________________________________________________________________________________________________
+TWORZENIE PROJEKTU BAZY DANYCH
+
+1. Identyfikacja procesów związanych z bazą (w konkretnej organizacji) i określenie potrzebnych funkcjonalności.
+2. Identyfikacja obiektów uczestniczących w tych procesach.
+3. Identyfikacja rodzajów powiązań między obiektami.
+4. Zdefiniowanie słowników (zbiorów wartości cech atrybutów).
+5. Identyfikacja zmiennych swobodnych.
+
+Zmienne swobodne to informacje niepowiązane bezpośrednio z wcześniejszymi obiektami. Przechowuje się je w tabeli,
+która nie ma relacji z innymi.
+
