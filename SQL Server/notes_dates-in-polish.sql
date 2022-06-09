@@ -1,5 +1,7 @@
-FUNCTIONS
-############################################################
+DATY I CZAS
+
+____________________________________________________________________________________________________
+PARAMETRY
 
 yy, yyyy  YEAR()
 qq, q     QUARTER()
@@ -15,9 +17,13 @@ ms        MILISECOND()
 mcs       MICROSECOND()
 ns        NANOSECOND()
 
-CURRENT_DATE, CURRENT_TIME
+Przykład:
 
-Example:
 SELECT ID
 FROM table_name
 WHERE MONTH(Dates) = '05'
+
+____________________________________________________________________________________________________
+AKTUALNY CZAS, DATA
+
+
