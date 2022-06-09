@@ -38,4 +38,24 @@ WHERE LastName LIKE @LastName AND FirstName LIKE @FirstName
 ________________________________________________________________________________________________________________
 WHILE ORAZ PRINT
 
+Pętla WHILE wykonywana jest tak długo, jak długo spełniony jest określony warunek. Może być kontrolowana z użyciem
+BREAK i CONTINUE.
+
+WHILE x > 10
+        {sql_statement | statement_block | BREAK | CONTINUE}
+        
+Przykład:
+
+WHILE (SELECT AVG(ListPrice) FROM Production.Product) < 300
+BEGIN
+        UPDATE Production.Product
+                SET ListPrice = ListPrice * 2
+        SELECT MAX(ListPrice) FROM Production.Product
+        IF (SELECT MAX(ListPrice) FROM Production.Product) > 500
+                BREAK
+        ELSE
+                CONTINUE
+END
+PRINT 'Too much for the market to bear'
+
 
