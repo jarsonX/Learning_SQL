@@ -51,9 +51,9 @@ WHERE DEPT_ID_DEP IN (
 ____________________________________________________________________________________________________
 IMPLICIT JOIN
 
-SELECT *
+SELECT *                                  Implicit CROSS JOIN (Cartesian Join)
 FROM EMPLOYEES, DEPARTMENTS
 
 SELECT *
-FROM EMPLOYEES AS E, DEPARTMENTS AS D
+FROM EMPLOYEES AS E, DEPARTMENTS AS D     Implicit INNER JOIN
 WHERE E.DEP_ID = D.DEPT_ID_DEP;
