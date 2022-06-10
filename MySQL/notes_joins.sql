@@ -1,4 +1,5 @@
---JOIN EXAMPLE
+-----------------------------------------------------------------------------------------------JOINS
+____________________________________________________________________________________________________
 
 --JOIN
 SELECT e.F_Name, e.L_Name, d.DEP_Name
@@ -7,7 +8,9 @@ INNER JOIN Departments AS d
 	ON e.DEP_ID = d.DEPT_ID_DEP
 ORDER BY DEP_Name, L_Name DESC;
 
---similar result without JOIN
+--IMPLICIT JOIN
+Works as JOIN, returns Cartesian join
+
 SELECT e.F_Name, e.L_Name, d.DEP_Name
 FROM Employees as e, Departments as d
 WHERE E.DEP_ID = D.DEPT_ID_DEP
