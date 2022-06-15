@@ -20,6 +20,14 @@ WHERE firstname LIKE '[a-d]%'
 WHERE firstname LIKE >= 'N'
 
 ____________________________________________________________________________________________________
+ORDER BY
+
+SELECT column1, column2, ...
+FROM table_name
+ORDER BY column2 DESC NULLS LAST
+
+ASC is set by default.
+____________________________________________________________________________________________________
 DISTINCT - removes duplicates
 
 SELECT DISTINCT (column_name)
