@@ -24,7 +24,8 @@ ORDER BY
 
 SELECT column1, column2, ...
 FROM table_name
-ORDER BY column2 DESC NULLS LAST
+ORDER BY column2 DESC NULLS LAST   /   WHERE column2 != 'None'
+                                       ORDER BY column2
 
 ASC is set by default.
 ____________________________________________________________________________________________________
