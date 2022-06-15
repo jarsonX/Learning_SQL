@@ -5,6 +5,9 @@ CAST
 
 CAST(expression AS data_type [(length)]) - konwertuje zmienną na inny typ
 
+Przykład, gdy potrzebujemy sformatować (usuwając '%') i przekonwertować wartość, aby móc ją porównać jak liczbę:
+...WHERE CAST(REPLACE(average_value_percent, '%', '') AS DOUBLE) < 70
+
 ________________________________________________________________________________________________________________
 ZMIENNE
 
