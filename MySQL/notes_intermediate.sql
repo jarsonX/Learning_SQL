@@ -7,7 +7,7 @@ Sub-queries can be used in:
 - FROM clause
 
 ____________________________________________________________________________________________________
-in WHERE
+in WHERE (most common use)
 
 SELECT EMP_ID, F_NAME, L_NAME, SALARY
 FROM EMPLOYEES
@@ -16,6 +16,19 @@ WHERE SALARY > (
                 FROM EMPLOYEES
                 );
 
+In the example below, we need community_area_name of an area with the highest number of crimes.
+Community_area_name is stored in CENSUS_DATA table, not in CHICAGO_CRIME_DATA. However, both tables
+have community_area_number. We find the area with highest number of crimes in sub-query. Then, result
+of main query needs to be equal to the result of a sub-query.
+
+SELECT community_area_name
+FROM CENSUS_DATA
+WHERE community_area_number = (
+                SELECT community_area_number 
+                FROM CHICAGO_CRIME_DATA 
+                GROUP BY community_area_number 
+                ORDER BY COUNT(community_area_number) DESC LIMIT 1)
+                
 ____________________________________________________________________________________________________
 in SELECT (column expressions)
 
