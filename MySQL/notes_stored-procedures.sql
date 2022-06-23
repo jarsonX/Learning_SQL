@@ -1,4 +1,6 @@
 STORED PROCEDURES
+Based on MySQL and IBM Db2 on Cloud
+
 ____________________________________________________________________________________________________
 A set of SQL statements stored and executed on the database server. Multiple statements are sent as
 one from the cient to the server.
