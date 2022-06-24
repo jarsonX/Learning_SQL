@@ -17,7 +17,7 @@ COMMIT or ROLLBACK
 ____________________________________________________________________________________________________
 EXAMPLE 1
 
-Scenario: Let's buy Rose a pair of Boots from ShoeShop. So we have to update the Rose balance as well 
+Scenario: Buy Rose a pair of Boots from ShoeShop. So we have to update the Rose balance as well 
 as the ShoeShop balance in the BankAccounts table. Then we also have to update Boots stock in the 
 ShoeShop table.
 
@@ -56,3 +56,59 @@ BEGIN
         
 END
 @                                                            -- Routine termination character
+
+____________________________________________________________________________________________________
+EXAMPLE 2
+Stored procedure + transaction
+
+CREATE PROCEDURE UPDATE_LEADERS_SCORE_3 ( 
+    IN in_School_ID INTEGER, IN in_Leader_Score INTEGER)     
+
+LANGUAGE SQL                                                
+MODIFIES SQL DATA                                           
+
+BEGIN 
+
+      UPDATE CHICAGO_PUBLIC_SCHOOLS
+        SET LEADERS_SCORE = in_Leader_Score
+        WHERE SCHOOL_ID = in_School_ID;                                            
+
+	IF in_Leader_Score > 0 AND in_Leader_Score < 20 THEN
+
+      UPDATE CHICAGO_PUBLIC_SCHOOLS
+        SET LEADERS_ICON = 'Very weak'
+        WHERE SCHOOL_ID = in_School_ID;
+
+	ELSEIF in_Leader_Score < 40 THEN
+
+      UPDATE CHICAGO_PUBLIC_SCHOOLS
+        SET LEADERS_ICON = 'Weak'
+        WHERE SCHOOL_ID = in_School_ID;
+
+	ELSEIF in_Leader_Score < 60 THEN
+
+      UPDATE CHICAGO_PUBLIC_SCHOOLS
+        SET LEADERS_ICON = 'Average'
+        WHERE SCHOOL_ID = in_School_ID;
+
+	ELSEIF in_Leader_Score < 80 THEN
+
+      UPDATE CHICAGO_PUBLIC_SCHOOLS
+        SET LEADERS_ICON = 'Strong'
+        WHERE SCHOOL_ID = in_School_ID;
+
+	ELSEIF in_Leader_Score < 100 THEN
+
+      UPDATE CHICAGO_PUBLIC_SCHOOLS
+        SET LEADERS_ICON = 'Very strong'
+        WHERE SCHOOL_ID = in_School_ID;
+        
+   ELSE 
+   	ROLLBACK;                   --Transaction rollback
+
+END IF;
+
+	COMMIT;                     --Transaction commit
+    
+END
+@   
