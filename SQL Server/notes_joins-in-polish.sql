@@ -11,17 +11,10 @@ INNER JOIN... ON...   część wspólna obu tabel
 
 >>> ZŁĄCZENIA ZEWNĘTRZNE
 
-LEFT JOIN... ON...        lewa tabela + to, co w prawej pasuje do lewej
-RIGHT JOIN... ON...
-FULL JOIN... ON...        wszystkie obiekty z obu tabel
-CROSS JOIN... ON...       każdy obiekt pierwszej tabeli z każdym obiektem drugiej tabeli
-
->>> OUTER JOINS
-Działają jak podstawowe JOINS, ale wykluczają część wspólną.
-
-LEFT OUTER JOIN... ON...  lewa tabela z wyłączeniem tego, co jest wspólne między lewą a prawą
-RIGHT OUTER JOIN... ON...
-FULL OUTER JOIN... ON...
+LEFT JOIN... ON...  / LEFT OUTER JOIN... ON...        wszystko z lewej + to, co z prawej pasuje do lewej
+RIGHT JOIN... ON... / RIGHT OUTER JOIN... ON...
+FULL JOIN... ON...  / FULL OUTER JOIN... ON...        wszystkie obiekty z obu tabel
+CROSS JOIN... ON...                                   każdy obiekt pierwszej tabeli z każdym obiektem drugiej tabeli
 
 Przykład:
 
