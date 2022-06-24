@@ -23,7 +23,13 @@ SELECT cities.name, countries.name
 FROM cities
 JOIN countries
   ON cities.country_id = countries.id
-
+  
+SELECT cities.name, countries.name
+FROM cities
+FULL OUTER JOIN countries
+  ON cities.country_id = countries.id  
+  AND countries.name = 'Poland'                       countries.name w tabeli tylko, gdy Poland; pozostałe puste
+    
 _________________________________________________________________________________________________________________
 OPERACJE NA ZBIORACH, ŁĄCZENIA PIONOWE (UNION)
 
