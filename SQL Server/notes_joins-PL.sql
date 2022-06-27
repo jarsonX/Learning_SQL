@@ -36,8 +36,8 @@ OPERACJE NA ZBIORACH, ŁĄCZENIA PIONOWE (UNION)
 Łączenie wyników dwóch lub więcej zapytań w jeden rezultat. Zapytania muszą zwracać taką samą ilość kolumn oraz
 kompatybilne typy danych. Nazwy odpowiadających sobie kolumn mogą się różnić.
 
-UNION łączy zestawy i usuwa duplikaty
-UNION ALL jak wyżej, ale nie usuwa duplikatów
+UNION łączy zestawy, pomija duplikaty
+UNION ALL łączy zestawy, nie pomija duplikatów
 INTERSECT zwraca część wspólną
 EXCEPT / MINUS zwraca tylko to, co było w pierwszej tabeli i nie powtarzało się w drugiej
 
