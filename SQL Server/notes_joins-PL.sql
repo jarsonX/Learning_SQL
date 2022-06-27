@@ -14,7 +14,7 @@ INNER JOIN... ON...   część wspólna obu tabel
 LEFT JOIN... ON...  / LEFT OUTER JOIN... ON...        wszystko z lewej + to, co z prawej pasuje do lewej
 RIGHT JOIN... ON... / RIGHT OUTER JOIN... ON...
 FULL JOIN... ON...  / FULL OUTER JOIN... ON...        wszystkie obiekty z obu tabel
-CROSS JOIN... ON...                                   każdy obiekt pierwszej tabeli z każdym obiektem drugiej tabeli
+CROSS JOIN...                                         każdy obiekt pierwszej tabeli z każdym obiektem drugiej tabeli
                                                       cross join to tzw. iloczyn kartezjański
 
 Przykład:
