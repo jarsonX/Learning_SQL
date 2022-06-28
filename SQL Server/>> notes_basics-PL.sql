@@ -99,6 +99,15 @@ WHEN warunek_2 THEN 'Jeżeli prawda_2'
 ELSE 'Jeżeli fałsz'
 END AS ...
 
+CASE może zostać ujęte w funkcji agregującej, np.:
+
+SELECT season
+      , COUNT(CASE WHEN id = 8888
+              AND home_goal > away_goal
+              THEN id END) AS home_wins
+FROM match
+GROUP BY season
+
 >>> IIF
 Stosowane, gdy są tylko dwie możliwości wyboru.
 
