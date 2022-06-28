@@ -89,7 +89,7 @@ CASE argument
 WHEN wartość_1 THEN 'Jeżeli prawda_1'           wartość to np. '1'
 WHEN wartość_2 THEN 'Jeżeli prawda_2'
 ELSE 'Jeżeli fałsz'
-END
+END AS ...
 
 Zastosowanie ZŁOŻONE - sprawdza wiele warunków i zwraca wynik związany z pierwszym spełnionym warunkiem.
 
@@ -97,7 +97,7 @@ CASE argument
 WHEN warunek_1 THEN 'Jeżeli prawda_1'           warunek to np. CategoryID = 1 OR CategoryID = 2
 WHEN warunek_2 THEN 'Jeżeli prawda_2'
 ELSE 'Jeżeli fałsz'
-END
+END AS ...
 
 >>> IIF
 Stosowane, gdy są tylko dwie możliwości wyboru.
