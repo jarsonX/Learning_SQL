@@ -1,7 +1,6 @@
+-------------------------------------------------------------------------------------------------------------CASE
 _________________________________________________________________________________________________________________
-INSTRUKCJE WARUNKOWE
 
->>> CASE
 Stosowane przy wielu możliwościach wyboru. Przypomina konstrukcję IF... THEN... ELSE.... 
 Sprawdza warunek dla każdego wiersza zwracanego w wyniku zapytania.
 
@@ -21,6 +20,7 @@ WHEN warunek_2 THEN 'Jeżeli prawda_2'
 ELSE 'Jeżeli fałsz'
 END AS ...
 
+_________________________________________________________________________________________________________________
 CASE może zostać ujęte w funkcji agregującej, np.:
 
 SELECT season
@@ -30,7 +30,29 @@ SELECT season
 FROM match
 GROUP BY season
 
->>> IIF
+_________________________________________________________________________________________________________________
+CASE, AVG i wyniki procentowe
+
+SELECT season,
+      ROUND(AVG(CASE WHEN hometeam_id = 8455 AND home_goal > away_goal THEN 1
+                     WHEN hometeam_id = 8455 AND home_goal < away_goal THEN 0
+                END, 2) AS pct_homewins,
+      ROUND(AVG(CASE WHEN awayteam_id = 8455 AND away_gaol > home_goal THEN 1
+                     WHEN awayteam_id = 8455 AND away_goal < home_goal THEN 0
+                END, 2) AS pct_awaywins
+FROM match
+GROUP BY season
+            
+| season   | pct_homewins | pct_awaywins |
+|----------|--------------|--------------|
+|2011/2012 | 0.75         | 0.5          |
+|2011/2012 | 0.86         | 0.67         |
+|2011/2012 | 0.94         | 0.62         |
+|2011/2012 | 1            | 0.7          |           
+
+
+ --------------------------------------------------------------------------------------------------------------IIF
+_________________________________________________________________________________________________________________
 Stosowane, gdy są tylko dwie możliwości wyboru.
 
 IIF (warunek, jeżeli_prawda, jeżeli_fałsz)
