@@ -33,6 +33,9 @@ GROUP BY season
 _________________________________________________________________________________________________________________
 CASE, AVG i wyniki procentowe
 
+AVG(CASE WHEN condition_is_met THEN 1
+         WHEN condition_is_not_met THEN 0 END)
+
 SELECT season,
       ROUND(AVG(CASE WHEN hometeam_id = 8455 AND home_goal > away_goal THEN 1
                      WHEN hometeam_id = 8455 AND home_goal < away_goal THEN 0
