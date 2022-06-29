@@ -36,6 +36,9 @@ SELECT EMP_ID, SALARY, (SELECT AVG(SALARY)
                         FROM EMPLOYEES) AS AVG_SALARY
 FROM EMPLOYEES
 
+Sub-queries in SELECT are used to return a single, aggregate value. Remember that normally you
+cannot include an aggregate value in an ungrouped SQL query. That is why subqueries are so useful.
+
 ____________________________________________________________________________________________________
 in FROM (derived tables/derived expressions)
 
