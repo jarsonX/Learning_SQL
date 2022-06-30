@@ -11,6 +11,8 @@ need to group data. They are also useful for calculating running totals, ranking
 
 Window funcitons are processed after the whole query except ORDER BY. Therefore, the window function
 uses the result set to calculate information, as opposed to using the database directly.
+
+Note that window functions are not available in SQLite.
 **/
 --------------------------------------------------------------------------------------------EXAMPLES
 ____________________________________________________________________________________________________
