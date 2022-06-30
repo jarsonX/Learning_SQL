@@ -18,9 +18,18 @@ How many goals were scored in each match in 2011/2012 and how did that compare t
 
 SELECT
       date,
-      (home_goal + away_gola) AS goals,
+      (home_goal + away_goal) AS goals,
       (SELECT AVG(home_goal + away_goal)
           FROM match
           WHERE season = '2011/2012') AS overall_avg
+      FROM match
+      WHERE season = '2011/2012';
+      
+>> Window function approach
+
+SELECT
+      date,
+      (home_goal + away_goal) AS goals,
+      AVG(home_goal + away_goal) OVER() AS overall_avg
       FROM match
       WHERE season = '2011/2012';
