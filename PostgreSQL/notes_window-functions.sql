@@ -31,6 +31,8 @@ FROM match
 WHERE season = '2011/2012';
       
 >> Window function approach
+--The OVER() clause offers significant benefits over subqueries in select. Queries will run faster, 
+--and the OVER() clause has a wide range of additional functions and clauses you can include with it.
 
 SELECT
       date,
