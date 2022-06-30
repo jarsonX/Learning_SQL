@@ -53,6 +53,22 @@ SELECT
       (home_goal + away_goal) AS goals
       RANK() OVER(ORDER BY home_goal + away_goal DESC) AS goals_rank
 FROM match
-WHERE season = '2011/2012';      
+WHERE season = '2011/2012';
+
+____________________________________________________________________________________________________
+PARTITION BY function
+
+--Calculates separate values for different categories.
+--Calculates different calculations in the same column.
+
+--How many goals were scored in each match, and how did that compare to the season's average?
+
+SELECT
+      date,
+      (home_goal + away_goal) AS goals,
+      AVG(home_goal + away_goal) OVER(PARTITION BY season) AS season_avg
+FROM match;      
+
+
 
 
