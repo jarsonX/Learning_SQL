@@ -101,7 +101,7 @@ SELECT
       home_goal,
       away_goal,
       SUM(home_goal)
-            OVER(ORDER BY date ROWS BETWEEN
+            OVER(ORDER BY date DESC ROWS BETWEEN
                  UNBOUNDED PRECIDING AND CURRENT ROW) AS running_total
 FROM match
 WHERE home_team_id = 8456 AND season = '2011/2012';
