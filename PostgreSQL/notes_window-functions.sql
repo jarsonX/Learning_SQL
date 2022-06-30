@@ -14,7 +14,7 @@ uses the result set to calculate information, as opposed to using the database d
 
 Note that window functions are not available in SQLite.
 **/
---------------------------------------------------------------------------------------------EXAMPLES
+-------------------------------------------------------------------------------------------FUNCTIONS
 ____________________________________________________________________________________________________
 
 --How many goals were scored in each match in 2011/2012 and how did that compare to the average?
@@ -80,6 +80,30 @@ FROM country AS c
 LEFT JOIN match AS m
 ON c.id = m.country_id
 
+____________________________________________________________________________________________________
+SLIDING WINDOWS
 
+--Perform calculations relative to the current row
+--Can be used to calculate running totals, sums, averages etc.
+--Can be partitioned by one or more columns
+
+--Keywords:
+ROWS BETWEEN <start> AND <finish>
+
+PRECEDING               --number of rows before the current row 
+FOLLOWING               --...after the current row
+UNBOUNDED PRECEDING     --include every row since the beginning
+UNBOUNDED FOLLOWING     --...since the end
+CURRENT ROW             --stop at the current row
+
+SELECT
+      date,
+      home_goal,
+      away_goal,
+      SUM(home_goal)
+            OVER(ORDER BY date ROWS BETWEEN
+                 UNBOUNDED PRECIDING AND CURRENT ROW) AS running_total
+FROM match
+WHERE home_team_id = 8456 AND season = '2011/2012';
 
 
