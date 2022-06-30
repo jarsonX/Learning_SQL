@@ -90,7 +90,7 @@ SLIDING WINDOWS
 --Keywords:
 ROWS BETWEEN <start> AND <finish>
 
-PRECEDING               --number of rows before the current row 
+PRECEDING               --number of rows before the current row, e.g. 1 PRECEDING
 FOLLOWING               --...after the current row
 UNBOUNDED PRECEDING     --include every row since the beginning
 UNBOUNDED FOLLOWING     --...since the end
