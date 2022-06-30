@@ -84,7 +84,7 @@ ________________________________________________________________________________
 SLIDING WINDOWS
 
 --Perform calculations relative to the current row
---Can be used to calculate running totals, sums, averages etc.
+--Can be used to calculate running totals, sums, averages etc. (between any two points)
 --Can be partitioned by one or more columns
 
 --Keywords:
