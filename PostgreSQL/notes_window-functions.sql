@@ -124,3 +124,7 @@ ________________________________________________________________________________
 OTHER USEFUL FUNCTIONS
 
 ROW_NUMBER()
+LAG(column, n)
+LEAD(column, n)
+FIRST_VALUE(column)
+LAST_VALUE(column)
