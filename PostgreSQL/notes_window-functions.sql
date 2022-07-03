@@ -119,3 +119,8 @@ SELECT
                  CURRENT ROW AND UNBOUNDED FOLLOWING) AS running_total
 FROM match
 WHERE home_team_id = 8456 AND season = '2011/2012';
+
+____________________________________________________________________________________________________
+OTHER USEFUL FUNCTIONS
+
+ROW_NUMBER()
