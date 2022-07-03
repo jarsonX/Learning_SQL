@@ -44,9 +44,11 @@ FROM match
 WHERE season = '2011/2012';
 
 ____________________________________________________________________________________________________
-RANK function
+RANKING function
 
---Generates a column numbering data set from highest to lowest (or vice versa).
+>> RANK()
+--Generates a column numbering data set from highest to lowest (or vice versa). Assigns the same
+--number to rows with identical values, skipping over the next numbers in such cases.
 
 --What is the rank of matches based on number of goals?
 
@@ -57,6 +59,9 @@ SELECT
 FROM match
 WHERE season = '2011/2012';
 
+>> Other ranking functions
+ROW_NUMBER() --always assings unique numbers, even for duplicates
+DENSE_RANK() --work similarily to RANK() but doesn't skip over the next numbers
 ____________________________________________________________________________________________________
 PARTITION BY function
 
@@ -123,7 +128,6 @@ WHERE home_team_id = 8456 AND season = '2011/2012';
 ____________________________________________________________________________________________________
 OTHER USEFUL FUNCTIONS
 
-ROW_NUMBER()
 LAG(column, n) --returns column's value at n rows before the current row
 LEAD(column, n)
 FIRST_VALUE(column)
