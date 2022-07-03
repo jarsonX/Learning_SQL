@@ -61,7 +61,7 @@ WHERE season = '2011/2012';
 
 >> Other ranking functions
 ROW_NUMBER() --always assings unique numbers, even for duplicates
-DENSE_RANK() --work similarily to RANK() but doesn't skip over the next numbers
+DENSE_RANK() --works similarily to RANK() but doesn't skip over the next numbers
 ____________________________________________________________________________________________________
 PARTITION BY function
 
