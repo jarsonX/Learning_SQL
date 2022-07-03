@@ -124,7 +124,7 @@ ________________________________________________________________________________
 OTHER USEFUL FUNCTIONS
 
 ROW_NUMBER()
-LAG(column, n)
+LAG(column, n) --returns column's value at n rows before the current row
 LEAD(column, n)
 FIRST_VALUE(column)
 LAST_VALUE(column)
