@@ -131,6 +131,13 @@ PAGING
 --Splitting data into approximately equal chunks. Useful for splitting data into thirds or quartiles.
 
 NTILE(n) --splits data into n approximately equal pages.
+
+SELECT
+  DISTINCT(event),
+  NTILE(10) OVER (ORDER BY event ASC) AS Page
+FROM Events
+ORDER BY Event ASC;
+
 ____________________________________________________________________________________________________
 OTHER USEFUL FUNCTIONS
 
