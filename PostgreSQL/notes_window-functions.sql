@@ -142,16 +142,16 @@ ________________________________________________________________________________
 AGGREGATE WINDOW FUNCTIONS
 
 SELECT Year,
-       Medals,
-       SUM(Medals) OVER (ORDER BY Year ASC) AS Medals_count
+       Medal,
+       SUM(Medal) OVER (ORDER BY Year ASC) AS Medals_count
 FROM Medals_table
 
 --Let's say we'd like to count medals per country:
 
 SELECT Year,
        Country,
-       Medals,
-       SUM(Medals) OVER(PARTITION BY Country)
+       Medal,
+       SUM(Medal) OVER(PARTITION BY Country)
 FROM Medals_table
 
 ____________________________________________________________________________________________________
