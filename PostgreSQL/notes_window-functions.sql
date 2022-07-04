@@ -139,6 +139,14 @@ FROM Events
 ORDER BY Event ASC;
 
 ____________________________________________________________________________________________________
+AGGREGATE WINDOW FUNCTIONS
+
+SELECT Year,
+       Medals,
+       SUM(Medals) OVER (ORDER BY Year ASC) AS Medals_count
+FROM Medals_table
+
+____________________________________________________________________________________________________
 OTHER USEFUL FUNCTIONS
 
 LAG(column, n) --returns column's value at n rows before the current row
