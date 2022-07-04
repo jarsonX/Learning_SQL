@@ -126,6 +126,12 @@ FROM match
 WHERE home_team_id = 8456 AND season = '2011/2012';
 
 ____________________________________________________________________________________________________
+PAGING
+
+--Splitting data into approximately equal chunks.
+
+NTILE(n) --splits data into n approximately equal pages.
+____________________________________________________________________________________________________
 OTHER USEFUL FUNCTIONS
 
 LAG(column, n) --returns column's value at n rows before the current row
