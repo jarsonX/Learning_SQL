@@ -146,6 +146,14 @@ SELECT Year,
        SUM(Medals) OVER (ORDER BY Year ASC) AS Medals_count
 FROM Medals_table
 
+--Let's say we'd like to count medals per country:
+
+SELECT Year,
+       Country,
+       Medals,
+       SUM(Medals) OVER(PARTITION BY Country)
+FROM Medals_table
+
 ____________________________________________________________________________________________________
 OTHER USEFUL FUNCTIONS
 
