@@ -128,7 +128,7 @@ WHERE home_team_id = 8456 AND season = '2011/2012';
 ____________________________________________________________________________________________________
 PAGING
 
---Splitting data into approximately equal chunks.
+--Splitting data into approximately equal chunks. Useful for splitting data into thirds or quartiles.
 
 NTILE(n) --splits data into n approximately equal pages.
 ____________________________________________________________________________________________________
