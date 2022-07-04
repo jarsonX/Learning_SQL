@@ -141,18 +141,25 @@ ORDER BY Event ASC;
 ____________________________________________________________________________________________________
 AGGREGATE WINDOW FUNCTIONS
 
+--window function for filtering
+WITH Athlete_Medals AS (
+  SELECT
+    Athlete, COUNT(*) AS Medals
+  FROM Summer_Medals
+  GROUP BY Athlete)
+
+--query
 SELECT Year,
-       Medal,
-       SUM(Medal) OVER (ORDER BY Year ASC) AS Medals_count
-FROM Medals_table
+       Medals,
+       SUM(Medals) OVER (ORDER BY Year ASC) AS Medals_count
+FROM Athlete_medals
 
 --Let's say we'd like to count medals per country:
-
 SELECT Year,
        Country,
-       Medal,
-       SUM(Medal) OVER(PARTITION BY Country)
-FROM Medals_table
+       Medals,
+       SUM(Medals) OVER(PARTITION BY Country)
+FROM Athlete_medals
 
 ____________________________________________________________________________________________________
 OTHER USEFUL FUNCTIONS
