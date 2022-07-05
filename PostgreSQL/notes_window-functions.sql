@@ -176,6 +176,17 @@ LAST_VALUE(City) OVER(
 --Frame: RANGE BETWEEN ... . Without the frame, LAST_VALUE would return the row's value in the City
 --column (so the City and Last_city columns would have the same value).
 
+--By default, frame starts at the beginning of a table or partition and ends at the current row.
+
+--Defining the frame - it always starts with RANGE BETWEEN or ROWS BETWEEN. It needs to have a start
+--and a finish that can be set with one of three clauses: PRECEDDING, CURRENT ROW, FOLLOWING.
+
+ROWS BETWEEN <start> AND <finish>
+      n PRECEDING                   --e.g. ROWS BETWEEN 3 PRECEDING AND CURRENT ROW (4 rows)
+      CURRENT ROW                   --     ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING (3 rows)
+      n FOLLOWING                   --     ROWS BETWEEN 5 PRECEDING AND 1 PRECEDING (5 rows)
+      
+ 
 ____________________________________________________________________________________________________
 OTHER USEFUL FUNCTIONS
 
