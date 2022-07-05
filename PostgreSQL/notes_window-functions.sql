@@ -211,6 +211,16 @@ RANGE BETWEEN vs ROWS BETWEEN
 --(summing them and displaying that sum for each duplicate), whereas ROWS does not.
 
 ____________________________________________________________________________________________________
+PIVOTING
+
+--Transforms a table by making columns out of the unique values of one of its columns.
+
+| Country | Year | Awards |               | Country | 2005 | 2012 |
+|---------|------|--------|               |---------|------|------|
+| PL      | 2005 | 12     |               | PL      | 12   | 20   |
+| PL      | 2012 | 20     |               
+
+____________________________________________________________________________________________________
 OTHER USEFUL FUNCTIONS
 
 LAG(column, n) --returns column's value at n rows before the current row
