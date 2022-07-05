@@ -162,6 +162,19 @@ SELECT Year,
 FROM Athlete_medals
 
 ____________________________________________________________________________________________________
+FRAMES
+
+--Example with LAST_VALUE function:
+
+LAST_VALUE(City) OVER(
+           ORDER BY Year ASC
+           RANGE BETWEEN
+                  UNBOUNDED PRECEDING AND
+                  UNBOUNDED FOLLOWING
+           ) AS Last_city
+           
+--Frame: RANGE BETWEEN ... . Without the frame, LAST_VALUE would return the row's value in the City col.      
+____________________________________________________________________________________________________
 OTHER USEFUL FUNCTIONS
 
 LAG(column, n) --returns column's value at n rows before the current row
