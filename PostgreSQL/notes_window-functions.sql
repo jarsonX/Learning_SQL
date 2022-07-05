@@ -202,7 +202,14 @@ SELECT Year,
             ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS Medals_MT
        FROM US_Medals  --assuming US_Medals is a CTE that counts US medals
        ORDER BY Year ASC;      
+
  
+____________________________________________________________________________________________________
+RANGE BETWEEN vs ROWS BETWEEN
+
+--Difference: RANGE treats duplicates in the columns in ORDER BY subclause as single entities
+--(summing them and displaying that sum for each duplicate), whereas ROWS does not.
+
 ____________________________________________________________________________________________________
 OTHER USEFUL FUNCTIONS
 
