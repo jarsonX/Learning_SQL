@@ -164,6 +164,9 @@ FROM Athlete_medals
 ____________________________________________________________________________________________________
 FRAMES
 
+--Frames allow you to restrict the rows passed as input to your window function to a sliding window 
+--for you to define the start and finish.
+
 --Example with LAST_VALUE function:
 
 LAST_VALUE(City) OVER(
