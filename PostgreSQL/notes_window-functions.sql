@@ -1,5 +1,3 @@
---DB: European Soccer Database
-
 ----------------------------------------------------------------------------------------INTRODUCTION
 ____________________________________________________________________________________________________
 /**
@@ -189,6 +187,21 @@ ROWS BETWEEN <start> AND <finish>
       CURRENT ROW                   --     ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING (3 rows)
       n FOLLOWING                   --     ROWS BETWEEN 5 PRECEDING AND 1 PRECEDING (5 rows)
       
+____________________________________________________________________________________________________
+AGGREGATE WINDOW FUNCTIONS AND FRAMES
+
+--Moving averages (average of last n periods)
+--Moving totals (sum of last n periods)
+
+--Example
+
+SELECT Year, 
+       Medals,
+       SUM(Medals) OVER(
+            ORDER BY Year ASC
+            ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS Medals_MT
+       FROM US_Medals  --assuming US_Medals is a CTE that counts US medals
+       ORDER BY Year ASC;      
  
 ____________________________________________________________________________________________________
 OTHER USEFUL FUNCTIONS
