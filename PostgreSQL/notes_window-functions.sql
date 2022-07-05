@@ -234,6 +234,42 @@ SELECT * FROM CROSSTAB($$
                            column_N DATA_TYPE_N);
 
 ____________________________________________________________________________________________________
+ROLLUP
+
+--Extra is a GROUP BY subclause that include extra rows for group-level aggregations.
+
+...
+GROUP BY Country, ROLLUP(Medal)
+...
+
+...
+GROUP BY ROLLUP(Country, Medal)      --this will create grand totals
+...
+
+--In the output, nulls represent grand totals (e.g. | null | null | 350 |).
+
+____________________________________________________________________________________________________
+CUBE
+
+--Works like ROLLUP but is not hierarchical. It generates all possible group-level aggregations.
+--Use ROLLUP when you have hierarchical data in columns, such as date parts (Year, Q, Month...).
+--Use CUBE when you want all possible group-level aggregations.
+
+____________________________________________________________________________________________________
+USEFUL FUNCTIONS FOR ROLLUP AND CUBE
+--Useful functions when working with ROLLUP and/or CUBE, but also with Pivoting, LAG and LEAD:
+
+COALESCE() --takes a list of values and returns the first non-null value, going from left to right.
+--example 
+
+SELECT
+COALESCE(Medal, 'All Medals') AS Medal
+COUNT(*) AS Awards
+FROM...
+
+STRING_AGG(column, separator) --concatenates values
+
+____________________________________________________________________________________________________
 OTHER USEFUL FUNCTIONS
 
 LAG(column, n) --returns column's value at n rows before the current row
