@@ -173,7 +173,9 @@ LAST_VALUE(City) OVER(
                   UNBOUNDED FOLLOWING
            ) AS Last_city
            
---Frame: RANGE BETWEEN ... . Without the frame, LAST_VALUE would return the row's value in the City col.      
+--Frame: RANGE BETWEEN ... . Without the frame, LAST_VALUE would return the row's value in the City
+--column (so the City and Last_city columns would have the same value).
+
 ____________________________________________________________________________________________________
 OTHER USEFUL FUNCTIONS
 
