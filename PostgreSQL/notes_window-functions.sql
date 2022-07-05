@@ -213,12 +213,25 @@ RANGE BETWEEN vs ROWS BETWEEN
 ____________________________________________________________________________________________________
 PIVOTING
 
---Transforms a table by making columns out of the unique values of one of its columns.
+--Transforms a table by making columns out of the unique values of one of its columns. Useful when
+--preparing data for visualization and reporting.
 
-| Country | Year | Awards |               | Country | 2005 | 2012 |
+| Country | Year | Awards |               | Country | 2005 | 2012 |  --Pivoted by year
 |---------|------|--------|               |---------|------|------|
 | PL      | 2005 | 12     |               | PL      | 12   | 20   |
 | PL      | 2012 | 20     |               
+
+--CROSSTAB is a function that allows to pivot by a ceratin column. It needs to be preceded by
+--CREATE EXTENSION statement. CREATE EXTENSION make extra functions available for use, e.g.
+--tablefunc extension allows CROSSTAB.
+
+CREATE EXTENSION IF NOT EXISTS tablefunc;
+
+SELECT * FROM CROSSTAB($$
+      source_sql TEXT $$) AS ct                 
+                          (column_1 DATA_TYPE_1,
+                           ...
+                           column_N DATA_TYPE_N);
 
 ____________________________________________________________________________________________________
 OTHER USEFUL FUNCTIONS
