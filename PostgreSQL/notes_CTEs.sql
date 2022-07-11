@@ -7,12 +7,14 @@ COMMON TABLE EXPRESSIONS
 --workflow. Arranging subqueries as CTEs will save you time, space, and confusion in the long run!
 
 --CTE
-WITH match_list AS (
+WITH match_list AS 
+(
     SELECT 
 	country_id,
   	(home_goal + away_goal) AS goals
     FROM match
-    WHERE season = '2013/2014' AND EXTRACT(MONTH FROM date) = '08'))
+    WHERE season = '2013/2014' AND EXTRACT(MONTH FROM date) = '08')
+)
 
 SELECT 
 	name,
