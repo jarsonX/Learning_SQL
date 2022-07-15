@@ -1,7 +1,7 @@
-TIME SERIES IN T-SQL
+--TIME SERIES IN T-SQL
 
 __________________________________________________________________________________________
-ROUND DATES-------------------------------------------------------------------------------
+--ROUND-DATES-----------------------------------------------------------------------------
 
 DECLARE
 	@SomeTime DATETIME2(7) = '2018-06-14 16:29:36.2248991';
@@ -13,9 +13,9 @@ SELECT
 	DATEADD(MINUTE, DATEDIFF(MINUTE, 0, @SomeTime), 0) AS RoundedToMinute;
 
 __________________________________________________________________________________________
-FORMATTING-DATES--------------------------------------------------------------------------
+--FORMATTING-DATES------------------------------------------------------------------------
 
-CAST()------------------------------------------------------------------------------------
+--CAST()----------------------------------------------------------------------------------
 
 --Converts one data type to another, including dates. However, we have no control over
 --formatting from dates to strings. Available in most SQL versions. Uses ANSI standard.
@@ -35,7 +35,7 @@ SELECT
 	CAST(@OldDateTime AS NVARCHAR(30)) AS OldDateToString;
 
 
-CONVERT()---------------------------------------------------------------------------------
+--CONVERT()-------------------------------------------------------------------------------
 
 --Converts one data type to another, including dates. Gives some control over formatting
 --from dates to strings using the style parameter. Available only in T-SQL.
@@ -56,7 +56,7 @@ SELECT
 	CONVERT(NVARCHAR(3), @SomeDate, 120) AS ODBC_sec
 
 
-FORMAT()----------------------------------------------------------------------------------
+--FORMAT()--------------------------------------------------------------------------------
 
 --Provides much flexibility for formatting. Uses .NET framework for conversion (processes
 --more rows) and thus it can be slower than CAST() or CONVERT(). However, this starts to
@@ -78,7 +78,7 @@ SELECT
 	FORMAT(@SomeDate, 'yyy-MM-dd') AS yMd;
 
 __________________________________________________________________________________________
-CALENDAR-TABLES---------------------------------------------------------------------------
+--CALENDAR-TABLES-------------------------------------------------------------------------
 
 --A table that stores information for easy retrieval, much like a 'warehouse dimension'.
 --It can be used to simplify queries.
@@ -103,7 +103,7 @@ APPLY()
 --including working with calendar tables.
 
 __________________________________________________________________________________________
-BUILDING-DATES-FROM-PARTS-----------------------------------------------------------------
+--BUILDING-DATES-FROM-PARTS---------------------------------------------------------------
 
 DATEFROMPARTS(year, month, day)  --takes integers, returns date
 
@@ -119,7 +119,7 @@ DATETIMEOFFSETFROMPARTS(year, month, day, hour, minute, second, fraction, hour_o
 			minute_offset, precision)  --allows to specify time-zone
 
 __________________________________________________________________________________________
-TRANSLATING-DATE-STRINGS------------------------------------------------------------------
+--TRANSLATING-DATE-STRINGS----------------------------------------------------------------
 
 --Like when reading data from CSVs or external sources.
 
@@ -131,7 +131,7 @@ PARSE('25 Dezember 2014' AS DATE USING 'de-de') AS Wiehnachten  --around 12k
 --the cost of using PARSE is significant so it's not recommended if not required
 
 __________________________________________________________________________________________
-SET-LANGUAGE------------------------------------------------------------------------------
+--SET-LANGUAGE----------------------------------------------------------------------------
 
 --Allows to change the language in the current session. Useful when we need to use month
 --names in a specific language (and pass those to formatting functions).
