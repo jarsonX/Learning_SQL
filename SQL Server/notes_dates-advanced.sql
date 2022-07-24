@@ -191,6 +191,17 @@ SELECT
 FROM sys.time_zone_info AS tzi
 WHERE tzi.name LIKE '%Time Zone%';
 
+--Example
+
+DECLARE 
+	@SomeDate NVARCHAR(50) = '2016-08-08 23:00:00';
+	
+SELECT
+	SWITCHOFFSET(@SomeDate, tzi.current_utc_offset) AS NDelhiTime
+	FROM sys.time_zone_info AS tzi
+	WHERE tzi.name = N'India Standard Time';
+
+
 --NOTE: You can always add hours to the date and then convert it to a specific offset:
 
 SELECT
