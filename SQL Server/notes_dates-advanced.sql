@@ -130,6 +130,10 @@ CONVERT(DATETIME2(3), 'May 13, 1990 11:52:29.998 AM') AS birthday  --around 240k
 PARSE('25 Dezember 2014' AS DATE USING 'de-de') AS Wiehnachten  --around 12k
 --the cost of using PARSE is significant so it's not recommended if not required
 
+--The cost of PARSE() is so high because it uses the Common Language Runtime, reaching to
+--Microsoft .NET Framework code to translate strings to dates, whereas CAST() and CONVERT()
+--are optimized functions which stay inside the SQL Server database engine confines.
+
 __________________________________________________________________________________________
 --SET-LANGUAGE----------------------------------------------------------------------------
 
@@ -219,4 +223,11 @@ SELECT
 __________________________________________________________________________________________
 --HANDLING-INVALID-DATES------------------------------------------------------------------
 
+--Try-functions convert invalid dates to NULL. Their cost is quite similar to normal
+--functions.
 
+TRY_CAST()
+
+TRY_CONVERT()
+
+TRY_PARSE()
