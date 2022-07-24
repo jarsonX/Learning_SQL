@@ -149,11 +149,32 @@ ________________________________________________________________________________
 --> Time
 --> UTC Offset
 
+
 --SWITCHOFFSET()--------------------------------------------------------------------------
 
---Allows to change the time zone of a given input string.
+--Allows to change the time zone of a given input string. Given a DATETIME or DATETIME2 it
+--assumes the time-zone to be UTC.
 
-SWITCHOFFSET()
+SWITCHOFFSET(date, 'offset')
 
+DECLARE 
+	@SomeDate DATETIMEOFFSET = '2019-04-10 12:59:02.3908505 -04:00';
 
+SELECT
+	SWITCHOFFSET(@SomeDate, '-07:00') AS LATime;
+	
+
+--TODATETIMEOFFSET()----------------------------------------------------------------------
+
+--We can use SWITCHOFFSET() function to convert a UTC-based time from a DATETIME2 type
+--into a DATETIMEOFFSET but TODATETIMEOFFSET() provides an easier way if we just need to 
+--give the date and time an offset from UTC.
+
+TODATETIMEOFFSET(date, 'offset')
+
+DECLARE 
+	@SomeDate DATETIME(3) =	'2019-04-10 12:59:02.390';
+	
+SELECT
+	TODATETIMEOFFSET(@SomeDate, '-04:00') AS EDT;
 
