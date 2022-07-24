@@ -182,6 +182,21 @@ DECLARE
 SELECT
 	TODATETIMEOFFSET(@SomeDate, '-04:00') AS EDT;
 	
+--We can use the TODATETIMEOFFSET() to turn an existing date into a date type with an 
+--offset. If our starting time is in UTC, we will need to correct for time zone and then 
+--append an offset. To correct for the time zone, we can add or subtract hours and minutes 
+--manually.
+
+--Example
+		
+DECLARE
+	@OlympicsClosingUTC DATETIME2(0) = '2016-08-21 23:00:00';  --Rio de Janeiro
+
+SELECT
+	TODATETIMEOFFSET(DATEADD(HOUR, -7, @OlympicsClosingUTC), '-07:00') AS PhoenixTime,
+	TODATETIMEOFFSET(DATEADD(HOUR, +12, @OlympicsClosingUTC), '+12:00') AS TuvaluTime;		
+
+
 --CHECKING-OFFSET-NUMBER------------------------------------------------------------------
 
 SELECT
@@ -200,11 +215,3 @@ SELECT
 	SWITCHOFFSET(@SomeDate, tzi.current_utc_offset) AS NDelhiTime
 	FROM sys.time_zone_info AS tzi
 	WHERE tzi.name = N'India Standard Time';
-
-
---NOTE: You can always add hours to the date and then convert it to a specific offset:
-
-SELECT
-	TODATETIMEOFFSET
-		(DATEADD(HOUR, 7, @SomeDate), '+02:00'
-		) AS BonnTime;
