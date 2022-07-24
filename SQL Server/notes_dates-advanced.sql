@@ -155,6 +155,8 @@ ________________________________________________________________________________
 --Allows to change the time zone of a given input string. Given a DATETIME or DATETIME2 it
 --assumes the time-zone to be UTC.
 
+--NOTE: You need to know the offset number.
+
 SWITCHOFFSET(date, 'offset')
 
 DECLARE 
@@ -170,6 +172,8 @@ SELECT
 --into a DATETIMEOFFSET but TODATETIMEOFFSET() provides an easier way if we just need to 
 --give the date and time an offset from UTC.
 
+--NOTE: You need to know the offset number.
+
 TODATETIMEOFFSET(date, 'offset')
 
 DECLARE 
@@ -177,4 +181,19 @@ DECLARE
 	
 SELECT
 	TODATETIMEOFFSET(@SomeDate, '-04:00') AS EDT;
+	
+--CHECKING-OFFSET-NUMBER------------------------------------------------------------------
 
+SELECT
+	tzi.name,
+	tzi.current_utc_offset,
+	tzi.is_currently_dst
+FROM sys.time_zone_info AS tzi
+WHERE tzi.name LIKE '%Time Zone%';
+
+--NOTE: You can always add hours to the date and then convert it to a specific offset:
+
+SELECT
+	TODATETIMEOFFSET
+		(DATEADD(HOUR, 7, @SomeDate), '+02:00'
+		) AS BonnTime;
