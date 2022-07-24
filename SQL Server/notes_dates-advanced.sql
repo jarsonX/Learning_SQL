@@ -137,3 +137,23 @@ ________________________________________________________________________________
 --names in a specific language (and pass those to formatting functions).
 
 SET LANGUAGE 'FRENCH'
+
+__________________________________________________________________________________________
+--WORKING-WITH-OFFSETS--------------------------------------------------------------------
+
+--Classic date types like DATETIME and DATETIME2 have no built-in concept of time-zone,
+--so a date which reads 3 PM might be in UTC or it might be in some other time-zone.
+
+--The data type for handling time-zones is DATETIMEOFFSET. It is made of three components:
+--> Date
+--> Time
+--> UTC Offset
+
+--SWITCHOFFSET()--------------------------------------------------------------------------
+
+--Allows to change the time zone of a given input string.
+
+SWITCHOFFSET()
+
+
+
