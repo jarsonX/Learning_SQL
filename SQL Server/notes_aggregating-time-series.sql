@@ -25,10 +25,8 @@ STDEVP()  --population standard deviation (only if we're looking at the entire p
 VAR()  --variance
 VARP()  --population variance
 
---There's no median function built-in.
-
-PERCENTILE_CONT() --takes a parameter, which is percentile you'd like, e.g. we want 50th percentile
---or 'median'.
+--There's no median function built-in SQL Server. However, we can use PERCENTILE_CONT(). It takes
+--a parameter, which is percentile you'd like, e.g. we want 50th percentile or 'median'.
 
 SELECT TOP(1)  --because PERCENTILE_CONT is a window function, it returns a row for each row sent in.
   PERCENTILE_CONT(0.5)
