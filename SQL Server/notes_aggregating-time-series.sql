@@ -30,13 +30,11 @@ VARP()  --population variance
 PERCENTILE_CONT() --takes a parameter, which is percentile you'd like, e.g. we want 50th percentile
 --or 'median'.
 
-SELECT TOP(1)
+SELECT TOP(1)  --because PERCENTILE_CONT is a window function, it returns a row for each row sent in.
   PERCENTILE_CONT(0.5)
     WITHIN GROUP(ORDER BY SomeValue DESC)
     OVER() AS Median
-FROM SomeTable    
+FROM SomeTable
 
-
-
-
-
+--Calculating median like above is very costly. You don't want to run it against large tables on
+--a busy production server.
