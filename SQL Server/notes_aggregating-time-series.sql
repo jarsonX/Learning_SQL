@@ -36,3 +36,15 @@ FROM SomeTable
 
 --Calculating median like above is very costly. You don't want to run it against large tables on
 --a busy production server.
+
+
+--DOWNSAMPLING-AND-UPSAMPLING-----------------------------------------------------------------------
+____________________________________________________________________________________________________
+
+--Downsampling--------------------------------------------------------------------------------------
+--Changing data to a coarser grain, e.g.:
+
+--Cast datetime type to a date type gives daily data rather than a combination of date and time.
+
+SELECT CAST(SomeDate AS DATE) AS SomeDate
+FROM SomeTable
