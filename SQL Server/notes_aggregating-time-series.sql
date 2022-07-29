@@ -38,13 +38,22 @@ FROM SomeTable
 --a busy production server.
 
 
---DOWNSAMPLING-AND-UPSAMPLING-----------------------------------------------------------------------
+--DOWNSAMPLING--------------------------------------------------------------------------------------
 ____________________________________________________________________________________________________
 
---Downsampling--------------------------------------------------------------------------------------
---Changing data to a coarser grain, e.g.:
-
---Cast datetime type to a date type gives daily data rather than a combination of date and time.
+--Changing data to a coarser grain, e.g.: cast datetime type to a date type gives daily data rather 
+--than a combination of date and time (uogólniamy dane dotyczące czasu).
 
 SELECT CAST(SomeDate AS DATE) AS SomeDate
 FROM SomeTable
+
+--Further downsampling, e.g. suppose we want the hour instead of day.
+
+SELECT
+  DATEADD(HOUR, DATEDIFF(HOUR, 0, SomeDate), 0) AS SomeDate
+FROM SomeTable
+
+--DATEDIFF(HOUR, 0, SomeDate) gives hours, e.g. 1,048,470, from time 0 to SomeDate.
+--DATEADD(HOUR, 1048470, 0) 
+
+
