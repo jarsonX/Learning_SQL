@@ -41,8 +41,8 @@ FROM SomeTable
 --DOWNSAMPLING--------------------------------------------------------------------------------------
 ____________________________________________________________________________________________________
 
---Changing data to a coarser grain, e.g.: cast datetime type to a date type gives daily data rather 
---than a combination of date and time (uogólniamy dane dotyczące czasu).
+--Changing data to a coarser grain (aggregating), e.g.: cast datetime type to a date type gives 
+--daily data rather than a combination of date and time (uogólniamy dane dotyczące czasu).
 
 SELECT CAST(SomeDate AS DATE) AS SomeDate
 FROM SomeTable
