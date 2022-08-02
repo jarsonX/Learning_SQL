@@ -80,7 +80,8 @@ ORDER BY
   t.Day
   
 --Cartesian aggregation with CUBE
---Useful for cases where we want the full combination of all aggregations between columns.
+--Useful for cases where we want the full combination of all aggregations between columns. The
+--problem is, it's probably gonna give us more results than we really need.
 
 SELECT
   t.IncidentType,
@@ -94,3 +95,24 @@ WITH CUBE
 ORDER BY
   t.IncidentyType,
   t.Office
+  
+--GROUPING SETS
+--Similar to CUBE but enables to control the level of aggregation and allows to include any
+--combination of aggregates we need.
+  
+--Here we define two grouping sets:
+  
+SELECT
+  t.IncidentType,
+  t.Office,
+  SUM(t.Events) AS Events
+FROM Table_events AS t
+GROUP BY GROUPING SETS
+(
+  (t.IncidentType, t.Office),   -- Grouping I: combination of incident types and offices
+  ()                            -- Grouping II: empty, just to give us the grand total
+)
+ORDER BY
+  t.IncidentType,
+  t.Office
+ 
