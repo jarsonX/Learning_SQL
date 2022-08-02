@@ -13,3 +13,10 @@ ________________________________________________________________________________
 --DENSE_RANK()    ascending, starting from 1 and also can have ties but does not skip numbers.
                   --example: 1, 2, 2, 3
 --NTILE()
+
+--Syntax
+SELECT 
+  column1,
+  ROW_NUMBER() OVER(ORDER BY column1 DESC) AS rn
+FROM tab
+ORDER BY column1 DESC
