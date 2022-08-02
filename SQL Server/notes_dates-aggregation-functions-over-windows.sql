@@ -20,3 +20,14 @@ SELECT
   ROW_NUMBER() OVER(ORDER BY column1 DESC) AS rn
 FROM tab
 ORDER BY column1 DESC
+
+--PARTITION-BY-clause
+--A clause accepted by OVER() which splits up the window by some column or set of columns.
+
+SELECT
+  Team,
+  RunsScored,
+  ROW_NUMBER() OVER(PARTITION BY Team
+                    ORDER BY RunsScored DESC) AS rn
+FROM Scores
+ORDER BY RunsScored DESC
