@@ -62,3 +62,19 @@ FROM SomeTable
 --GROUPING-BY-ROLLUP,-CUBE-AND-GROUPING-SETS--------------------------------------------------------
 ____________________________________________________________________________________________________
 
+--ROLLUP
+--Works best with hierarchical data. Rollup takes each combination of the first column followed by
+--matching value in the second column and so on, showing aggregates for each.
+
+SELECT
+  t.Month,
+  t.Day,
+  SUM(t.Events) AS Events
+FROM Table_dates AS t
+GROUP BY
+  t.Month,
+  t.Day
+WITH ROLLUP
+ORDER BY
+  t.Month,
+  t.Day
