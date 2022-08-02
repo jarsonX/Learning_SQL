@@ -52,7 +52,7 @@ FROM SomeTable
 --Further downsampling, e.g. suppose we want the hour instead of day.
 
 SELECT
-  DATEADD(HOUR, DATEDIFF(HOUR, 0, SomeDate), 0) AS SomeDate
+  DATEADD(HOUR, DATEDIFF(HOUR, 0, SomeDate), 0) AS SomeDate  --time = SQL Server starting point
 FROM SomeTable
 
 --DATEDIFF(HOUR, 0, SomeDate) gives hours, e.g. 1,048,470, from time 0 to SomeDate.
