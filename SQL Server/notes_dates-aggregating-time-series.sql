@@ -78,3 +78,19 @@ WITH ROLLUP
 ORDER BY
   t.Month,
   t.Day
+  
+--Cartesian aggregation with CUBE
+--Useful for cases where we want the full combination of all aggregations between columns.
+
+SELECT
+  t.IncidentType,
+  t.Office,
+  SUM(t.Events) AS Events
+FROM Table_events AS t
+GROUP BY
+  t.IncidentType,
+  t.Office
+WITH CUBE
+ORDER BY
+  t.IncidentyType,
+  t.Office
