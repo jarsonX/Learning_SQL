@@ -98,7 +98,10 @@ ORDER BY
   
 --GROUPING SETS
 --Similar to CUBE but enables to control the level of aggregation and allows to include any
---combination of aggregates we need.
+--combination of aggregates we need. Of these three, GROUPING SETS is the most customizable, 
+--allowing you to build out exactly the levels of aggregation you want. GROUPING SETS makes 
+--no assumptions about hierarchy (unlike ROLLUP) and can remain manageable with a good number 
+--of columns (unlike CUBE).
   
 --Here we define two grouping sets:
   
