@@ -52,8 +52,8 @@ SELECT
   Team,
   RunsScored,
   MAX(RunsScored) OVER(PARTITION BY Team) AS MaxRuns
-  FROM Scores
-  ORDER BY RunsScored DESC
+FROM Scores
+ORDER BY RunsScored DESC
   
 --|--Team--|--RunsScored--|--MaxRuns--|
 --|________|______________|___________|
@@ -63,3 +63,22 @@ SELECT
 --|--FLA---|--7-----------|--7--------|
 --|--FLA---|--7-----------|--7--------|
 --|--FLA---|--6-----------|--7--------|
+
+--An aggregate function with an empty OVER() clause does the same thing as the non-windowed aggregation
+--function except for one difference: it does not require that we group by non-aggregated columns.
+
+SELECT
+  Team,
+  RunsScored,
+  MAX(RunsScored) OVER() AS MaxRuns
+FROM Scores
+ORDER BY RunsScored DESC
+
+--|--Team--|--RunsScored--|--MaxRuns--|
+--|________|______________|___________|
+--|--AZ----|--8-----------|--8--------|
+--|--AZ----|--6-----------|--8--------|
+--|--AZ----|--3-----------|--8--------|
+--|--FLA---|--7-----------|--8--------|
+--|--FLA---|--7-----------|--8--------|
+--|--FLA---|--6-----------|--8--------|
