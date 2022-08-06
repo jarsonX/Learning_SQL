@@ -201,3 +201,174 @@ FROM DaySpaRollup
 --a note within Moving-averages section). However, sometimes we might want to have
 --information regarding the number of days/weeks etc. between datapoints instead. This can
 --be achieved by combining DATEDIFF with LAG and LEAD.
+
+SELECT
+	ir.IncidentDate,
+	ir.IncidentTypeID,
+    -- Fill in the days since last incident
+	DATEDIFF(DAY, LAG(ir.IncidentDate, 1) OVER (
+		PARTITION BY ir.IncidentTypeID
+		ORDER BY ir.IncidentDate
+	), ir.IncidentDate) AS DaysSinceLastIncident,
+    -- Fill in the days until next incident
+	DATEDIFF(DAY, ir.IncidentDate, LEAD(ir.IncidentDate, 1) OVER (
+		PARTITION BY ir.IncidentTypeID
+		ORDER BY ir.IncidentDate
+	)) AS DaysUntilNextIncident
+FROM dbo.IncidentRollup ir
+WHERE
+	ir.IncidentDate >= '2019-07-02'
+	AND ir.IncidentDate <= '2019-07-31'
+	AND ir.IncidentTypeID IN (1, 2)
+ORDER BY
+	ir.IncidentTypeID,
+	ir.IncidentDate;
+	
+	
+--FINDING-MAX-LEVELS-OF-OVERLAP-CASE------------------------------------------------------
+__________________________________________________________________________________________
+
+--Let's suppose we want to track a number of customers in a shop at a given time and check
+--what is the max number of concurrent visitors. We have a table like this:
+
+-- _____________________________________________________________
+--| StartTime           | EndTime             | ProductsOrdered |
+--|---------------------|---------------------|-----------------|
+--| 2019-07-08 14:35:00 | 2019-07-08 16:01:00 |              13 |      
+--| 2019-07-08 15:35:00 | 2019-07-08 17:01:00 |              13 | 
+--| 2019-07-08 16:35:00 | 2019-07-08 18:01:00 |              17 | 
+--| 2019-07-08 17:35:00 | 2019-07-08 19:01:00 |              15 | 
+--| 2019-07-08 17:55:00 | 2019-07-08 17:57:00 |               1 | 
+--| 2019-07-08 20:35:00 | 2019-07-08 22:01:00 |              13 | 
+--| ...                 | ...                 |             ... |
+--|---------------------|---------------------|-----------------|
+
+
+--ALGORITHM-STEP-1------------------------------------------------------------------------
+
+--Break up our start and end times into separate rows so that we have an event per
+--entrance and an event per exit.
+--Add 2 more columns: EntryCount and StartOrdinal. EntryCount helps us keep track of the
+--number of people in the store at a given time and decrements whenever a person leaves.
+--StartOrdinal gives us the order of entry, so it will be NULL for any exit.
+
+SELECT
+	StartTime AS TimeUTC,
+	1 AS EntryCount,
+	ROW_NUMBER() OVER(ORDER BY StartTime) AS StartOrdinal
+FROM Orders
+
+UNION ALL
+
+SELECT
+	EndTime AS TimeUTC,
+	-1 AS EntryCount,
+	NULL AS StartOrdinal
+FROM Orders
+
+--RESULT (dates were omitted)
+
+--Starting points
+-- ______________________________________
+--| TimeUTC  | EntryCount | StartOrdinal |
+--|----------|------------|--------------|
+--| 14:35:00 |          1 |            1 |
+--| 15:35:00 |          1 |            2 |
+--| 16:35:00 |          1 |            3 |
+--| 17:35:00 |          1 |            4 |
+--| 17:55:00 |          1 |            5 |
+--| 20:35:00 |          1 |            6 |
+--| ...      |        ... |          ... |
+--|----------|------------|--------------|
+
+--Stopping points
+-- ______________________________________
+--| TimeUTC  | EntryCount | StartOrdinal |
+--|----------|------------|--------------|
+--| 16:01:00 |         -1 |         NULL |
+--| 17:01:00 |         -1 |         NULL |
+--| 18:01:00 |         -1 |         NULL |
+--| 19:01:00 |         -1 |         NULL |
+--| 17:57:00 |         -1 |         NULL |
+--| 22:01:00 |         -1 |         NULL |
+--| ...      |        ... |          ... |
+--|----------|------------|--------------|
+
+--The above represents the starting and stopping points for each customer visit.
+--We put this in CTE called 'StartStopPoints'.
+
+
+--ALGORITHM-STEP-2------------------------------------------------------------------------
+
+--Another CTE 'StartStopOrder' below takes each of our start and end times in the first
+--query and adds a new ordinal value arranging when people leave and enter. We order by
+--time of entry (TimeUTC) and the by StartOrdinal. Ordering by StartOrdinal is important
+--because we have exits marked as NULL values, so they will sort before the entrances.
+--That way, if a person walks out the door exactly when another person walks in the door,
+--we don't say there were two people in. We decrement the counter for the person leaving
+--and then increment the counter for the person entering.
+--StartOrEndOrdinal value gives us an ordering of the order in which people entered and
+--left the store.
+
+SELECT
+	TimeUTC,
+	EntryCount,
+	StartOrdinal,
+	ROW_NUMBER() OVER(ORDER BY TimeUTC, StartOrdinal) AS StartOrEndOrdinal
+FROM StartStopPoints
+
+--RESULT
+
+-- __________________________________________________________
+--| TimeUTC  | EntryCount | StartOrdinal | StartOrEndOrdinal | 
+--|----------|------------|--------------|-------------------|
+--| 14:35:00 |          1 |            1 |                 1 |
+--| 15:35:00 |          1 |            2 |                 2 |
+--| 16:01:00 |         -1 |         NULL |                 3 |
+--| 16:35:00 |          1 |            3 |                 4 |
+--| 17:01:00 |         -1 |         NULL |                 5 |
+--| 17:35:00 |          1 |            4 |                 6 |
+--| 17:55:00 |          1 |            5 |                 7 |
+--| 17:57:00 |         -1 |         NULL |                 8 |
+--| 18:01:00 |         -1 |         NULL |                 9 |
+--| 19:01:00 |         -1 |         NULL |                10 |
+--| 20:35:00 |          1 |            6 |                11 |
+--| 22:01:00 |         -1 |         NULL |                12 |
+--|----------|------------|--------------|-------------------|
+
+--Now if we see positive entry counts start to outnumber negative entry counts, we have
+--more people in the store.
+
+--SOLUTION 1: BRUTE FORCE!
+--We might be to sum EntryCount using a running total, e.g. after --row 6 we have 2 people 
+--in the store (4 entrances - 2 exits = 2 people).
+
+--SOLUTION 2: MORE EFFICIENT
+--We have two StartOrEndOrdinal rows for every StartOrdinal row, so if we double the 
+--StartOrdinal value and subtract it from the StartOrEndOrdinal, that leaves us with the
+--number of people in the story at any given time.
+
+-- __________________________________________________________________
+--| TimeUTC  | StartOrdinal | StartOrEndOrdinal | Calc      | Result |
+--|----------|--------------|-------------------|-----------|--------|
+--| 14:35:00 |            1 |                 1 | (2*1) - 1 | 1      |
+--| 15:35:00 |            2 |                 2 | (2*2) - 2 | 2      |
+--| 16:01:00 |         NULL |                 3 | NULL      | NULL   |
+--| 16:35:00 |            3 |                 4 | (2*3) - 4 | 2      |
+--| 17:01:00 |         NULL |                 5 | NULL      | NULL   |
+--| 17:35:00 |            4 |                 6 | (2*4) - 6 | 2      |
+--| ...      |          ... |               ... | ...       | ...    |
+--|----------|--------------|-------------------|-----------|--------|
+
+--Putting this into SQL, we get back our final total of 3 concurrent visitors.
+
+SELECT
+	MAX(2 * StartOrdinal - StartOrEndOrdinal) AS MaxCouncurrentVisitors
+FROM StartStopOrder
+WHERE EntryCount = 1
+
+-- _______________________
+--| MaxConcurrentVisitors |
+--|-----------------------|
+--|                     3 |
+--|-----------------------|	
