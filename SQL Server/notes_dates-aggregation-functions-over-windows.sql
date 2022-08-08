@@ -346,7 +346,7 @@ FROM StartStopPoints
 --SOLUTION 2: MORE EFFICIENT
 --We have two StartOrEndOrdinal rows for every StartOrdinal row, so if we double the 
 --StartOrdinal value and subtract it from the StartOrEndOrdinal, that leaves us with the
---number of people in the story at any given time.
+--number of people in the store at any given time.
 
 -- __________________________________________________________________
 --| TimeUTC  | StartOrdinal | StartOrEndOrdinal | Calc      | Result |
