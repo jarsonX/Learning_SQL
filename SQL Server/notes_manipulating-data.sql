@@ -49,14 +49,3 @@ WHERE cocoa_percent > '0.5';
 CAST(expression AS data_type [(length)])
 
 CONVERT(data_type, [(length)], expression [, style])
-
-
---MANIPULATING-TIME-----------------------------------------------------------------------
-__________________________________________________________________________________________
-
---Function that return system date and time
-
---Higher precision                    --Lower precision
-SYSDATETIME()                         GETDATE()
-SYSUTCDATETIME()                      GETUTCDATE()
-SYSDATETIMEOFFSET()                   CURRENT_TIMESTAMP
