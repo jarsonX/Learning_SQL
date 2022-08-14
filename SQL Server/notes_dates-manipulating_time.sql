@@ -40,5 +40,4 @@ DATEPART(datepart, date)
 
 DATEFROMPARTS(year, month, day)
 
---The opposite of DATENAME and DATEPART.
-
+--The opposite of DATENAME and DATEPART. The inputs are integers.
