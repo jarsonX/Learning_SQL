@@ -46,6 +46,7 @@ DATEFROMPARTS(year, month, day)
 --ARITHMETIC-OPERATIONS-ON-DATES----------------------------------------------------------
 __________________________________________________________________________________________
 
-
+DATEADD(datepart, number, date)
+DATEDIFF(datepart, start_date, end_date)
 
 
