@@ -38,6 +38,14 @@ DATEPART(datepart, date)
 
 --DATEFROMPARTS---------------------------------------------------------------------------
 
+--The opposite of DATENAME and DATEPART. The inputs are integers.
+
 DATEFROMPARTS(year, month, day)
 
---The opposite of DATENAME and DATEPART. The inputs are integers.
+
+--ARITHMETIC-OPERATIONS-ON-DATES----------------------------------------------------------
+__________________________________________________________________________________________
+
+
+
+
