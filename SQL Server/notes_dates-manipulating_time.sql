@@ -27,3 +27,18 @@ month       mm, m
 dayofyear   dy, y
 week        wk, ww
 weekday     dw, w
+
+
+--DATEPART--------------------------------------------------------------------------------
+
+--Works like DATENAME but the returned values are all integers.
+
+DATEPART(datepart, date)
+
+
+--DATEFROMPARTS---------------------------------------------------------------------------
+
+DATEFROMPARTS(year, month, day)
+
+--The opposite of DATENAME and DATEPART.
+
