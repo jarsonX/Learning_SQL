@@ -54,4 +54,9 @@ CONVERT(data_type, [(length)], expression [, style])
 --MANIPULATING-TIME-----------------------------------------------------------------------
 __________________________________________________________________________________________
 
-x
+--Function that return system date and time
+
+--Higher precision                    --Lower precision
+SYSDATETIME()                         GETDATE()
+SYSUTCDATETIME()                      GETUTCDATE()
+SYSDATETIMEOFFSET()                   CURRENT_TIMESTAMP
