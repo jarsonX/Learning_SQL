@@ -19,9 +19,9 @@ PATINDEX('%pattern%', expression [, location])
 
 --Example
 SELECT
-first_name,
-last_name,
-email
+  first_name,
+  last_name,
+  email
 FROM voters
 -- Look for first names that contain one of the letters: "x", "w", "q"
 WHERE PATINDEX('%[xwq]%', first_name) > 0;
@@ -71,11 +71,11 @@ STRING_AGG(expression, separator) [WITHIN GROUP (ORDER BY expression)]
 --Examples
 
 SELECT
-STRING_AGG(first_name, ', ') AS list_of_names
+  STRING_AGG(first_name, ', ') AS list_of_names
 FROM voters;
 
 SELECT
-STRING_AGG(CONCAT(first_name, ' ', last_name, ' (', first_vote_date, ')'), CHAR(13))
+  STRING_AGG(CONCAT(first_name, ' ', last_name, ' (', first_vote_date, ')'), CHAR(13))
 AS list_of_names
 FROM voters;
 
@@ -91,8 +91,8 @@ STRING_SPLIT(string, separator)
 --STRING_AGG()-WITH-GROUP-BY--------------------------------------------------------------
 
 SELECT
-YEAR(first_vote_date) AS voting_year,
-STRING_AGG(first_name, ', ') AS voters
+  YEAR(first_vote_date) AS voting_year,
+  STRING_AGG(first_name, ', ') AS voters
 FROM voters
 GROUP BY YEAR(first_vote_date);
 
@@ -110,8 +110,8 @@ GROUP BY YEAR(first_vote_date);
 --a column.
 
 SELECT
-YEAR(first_vote_date) AS voting_year,
-STRING_AGG(first_name, ', ') WITHIN GROUP (ORDER BY first_name ASC) AS voters
+  YEAR(first_vote_date) AS voting_year,
+  STRING_AGG(first_name, ', ') WITHIN GROUP (ORDER BY first_name ASC) AS voters
 FROM voters
 GROUP BY YEAR(first_vote_date);
 
