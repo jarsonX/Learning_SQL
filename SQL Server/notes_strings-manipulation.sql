@@ -44,7 +44,7 @@ REPLACE(string, searched_string, replacement_string)
 --returns a string where all occurences of an expression are replaced with another one
 
 --Example
-SELECT REPLACE('I like apples, apples are good.', 'apple', 'orange')
+SELECT REPLACE('I like apples, apples are good.', 'apples', 'oranges')
 
 SUBSTRING(string, start, number_of_characters) --returns part of a string
 
