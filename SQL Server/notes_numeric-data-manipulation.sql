@@ -67,3 +67,11 @@ ORDER BY rating ASC
 
 ____________________________________________________________________________________________________
 --MATHEMATICAL-FUNCTIONS----------------------------------------------------------------------------
+
+ABS(num)
+SIGN(num)  --returns the sign of an expression, as an integer
+
+--Rounding functions
+CEILING(num)  --returns the smallest integer greater than or equal to the num
+FLOOR(num) --returns the largest integer less than or equal to the num
+ROUND(num, length) --returns a numeric value, rounded to the specified length 
