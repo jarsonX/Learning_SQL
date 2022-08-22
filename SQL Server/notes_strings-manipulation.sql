@@ -32,6 +32,7 @@ ________________________________________________________________________________
 
 LOWER(string)
 UPPER(string)
+INITCAP(string)  --not sure if it works in SQL Server
 
 LEFT(string, number_of_characters)
 RIGHT(string, number_of_characters)
