@@ -73,5 +73,8 @@ SIGN(num)  --returns the sign of an expression, as an integer
 
 --Rounding functions
 CEILING(num)  --returns the smallest integer greater than or equal to the num
+--e.g. -50.49 -> -50, 73.71 -> 74
 FLOOR(num) --returns the largest integer less than or equal to the num
+--e.g. -50.49 -> -51, 73.71 -> 73
 ROUND(num, length) --returns a numeric value, rounded to the specified length 
+--e.g. ROUND(-50.493, 1) -> -50.500, ROUND(73.715, 2) -> 73.720
