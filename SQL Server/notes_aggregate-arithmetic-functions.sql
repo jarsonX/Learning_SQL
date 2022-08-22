@@ -29,7 +29,7 @@ ROWS BETWEEN start_boundary AND end_boundary
 --|---------------------|----------------------------|
 
 EXAMPLE
---You want to compare the total votes of each person with the minimum number of votes recorded by
+--We want to compare the total votes of each person with the minimum number of votes recorded by
 --a person and with the maximum. The voters should be divided per gender.
 
 SELECT
@@ -41,4 +41,26 @@ SELECT
     LAST VALUE(total_votes)
         OVER(PARTITION BY gender ORDER BY total_votes
              ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS max_votes
-FROM voters             
+FROM voters      
+
+LAG(numeric_expression) OVER([PARTITION BY column] ORDER BY column)
+--Accesses data from a previous row in the same result set.
+
+LEAD(numeric_expression) OVER([PARTITION BY column] ORDER BY column)
+--Accesses data from a subsequent row in the same result set.
+
+EXAMPLE
+--We select information about the different types of chocolates from the company 'Felchlin',
+--their cocoa percentage and the rating received. We'd like to compare the percentage of
+--each bar with the one of the bar that received the nearest lower rating and also higher
+--rating.
+
+SELECT
+    broad_bean_origin AS bean_origin,
+    rating,
+    cocoa_percent,
+    LAG(cocoa_percent) OVER(ORDER BY rating) AS percent_lower_rating,
+    LEAD(cocoa_percent) OVER(ORDER BY rating) AS percent_higher_rating
+FROM ratings
+WHERE company = 'Felchlin'
+ORDER BY rating ASC
