@@ -11,6 +11,7 @@ LAST_VALUE(numeric_expression) OVER([PARTITION BY column] ORDER BY column ROW_or
 --Returns the last value in an ordered set.
 
 ROW_or_RANGE frame
+--The limits of each partition can be explicitly specified after ORDER BY from the OVER clause.
 
 RANGE BETWEEN start_boundary AND end_boundary
 ROWS BETWEEN start_boundary AND end_boundary
